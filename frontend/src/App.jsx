@@ -64,11 +64,7 @@ function App() {
           <ul>
             <li>
               <a href="https://github.com/vitejs/vite" target="_blank" rel="noopener noreferrer">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
+                <svg className="button-icon" role="presentation" aria-hidden="true">
                   <use href="/icons.svg#github-icon"></use>
                 </svg>
                 GitHub
@@ -76,11 +72,7 @@ function App() {
             </li>
             <li>
               <a href="https://chat.vite.dev/" target="_blank" rel="noopener noreferrer">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
+                <svg className="button-icon" role="presentation" aria-hidden="true">
                   <use href="/icons.svg#discord-icon"></use>
                 </svg>
                 Discord
@@ -88,11 +80,7 @@ function App() {
             </li>
             <li>
               <a href="https://x.com/vite_js" target="_blank" rel="noopener noreferrer">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
+                <svg className="button-icon" role="presentation" aria-hidden="true">
                   <use href="/icons.svg#x-icon"></use>
                 </svg>
                 X.com
@@ -100,28 +88,34 @@ function App() {
             </li>
             <li>
               <a href="https://bsky.app/profile/vite.dev" target="_blank" rel="noopener noreferrer">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
+                <svg className="button-icon" role="presentation" aria-hidden="true">
                   <use href="/icons.svg#bluesky-icon"></use>
                 </svg>
                 Bluesky
               </a>
             </li>
-            {/* เพิ่มปุ่มลิงก์ Portfolio ของพีรพัฒน์ */}
-            <li>
-              <a 
-                href="https://member-portfolio-7242e8.gitlab.io" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{ backgroundColor: '#10b981', color: '#ffffff', fontWeight: 'bold' }}
-              >
-                🌐 พีรพัฒน์ Portfolio
-              </a>
-            </li>
           </ul>
+
+          {/* ปุ่มลิงก์ Portfolio ของพีรพัฒน์ */}
+          <div style={{ marginTop: '16px' }}>
+            <a 
+              href="https://member-portfolio-7242e8.gitlab.io" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-block',
+                padding: '8px 16px',
+                backgroundColor: '#10b981',
+                color: '#ffffff',
+                borderRadius: '6px',
+                textDecoration: 'none',
+                fontWeight: 'bold',
+                fontSize: '14px'
+              }}
+            >
+              🌐 พีรพัฒน์ Portfolio
+            </a>
+          </div>
         </div>
       </section>
 
