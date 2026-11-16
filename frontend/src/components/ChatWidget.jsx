@@ -19,7 +19,7 @@ export default function ChatWidget() {
     setLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/chat', { message: userMsg });
+      const res = await axios.post('https://chatbot-nine-sable-75.vercel.app/api/chat', { message: userMsg });
       setMessages(prev => [...prev, { sender: 'bot', text: res.data.reply }]);
     } catch (err) {
       setMessages(prev => [...prev, { sender: 'bot', text: 'ขออภัยครับ เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์ backend' }]);
