@@ -55,67 +55,37 @@ function App() {
             </li>
           </ul>
         </div>
+
+        {/* ปรับเป็นส่วนแสดงรายชื่อเพื่อนในกลุ่มแทนโซเชียลเดิม */}
         <div id="social">
           <svg className="icon" role="presentation" aria-hidden="true">
             <use href="/icons.svg#social-icon"></use>
           </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
+          <h2>Team Members</h2>
+          <p>สมาชิกในกลุ่ม</p>
+          
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', padding: 0 }}>
+            {/* พีรพัฒน์ */}
             <li>
-              <a href="https://github.com/vitejs/vite" target="_blank" rel="noopener noreferrer">
-                <svg className="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
+              <a 
+                href="https://member-portfolio-7242e8.gitlab.io" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ backgroundColor: '#10b981', color: '#ffffff', fontWeight: 'bold' }}
+              >
+                🌐 พีรพัฒน์ Portfolio
               </a>
             </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank" rel="noopener noreferrer">
-                <svg className="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank" rel="noopener noreferrer">
-                <svg className="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank" rel="noopener noreferrer">
-                <svg className="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
 
-          {/* ปุ่มลิงก์ Portfolio ของพีรพัฒน์ */}
-          <div style={{ marginTop: '16px' }}>
-            <a 
-              href="https://member-portfolio-7242e8.gitlab.io" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-block',
-                padding: '8px 16px',
-                backgroundColor: '#10b981',
-                color: '#ffffff',
-                borderRadius: '6px',
-                textDecoration: 'none',
-                fontWeight: 'bold',
-                fontSize: '14px'
-              }}
-            >
-              🌐 พีรพัฒน์ Portfolio
-            </a>
-          </div>
+            {/* เพิ่มปุ่มของเพื่อนคนอื่นๆ ได้ตามโครงสร้างนี้เลยครับ */}
+            {/* 
+            <li>
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                👤 ชื่อเพื่อนคนต่อไป
+              </a>
+            </li> 
+            */}
+          </ul>
         </div>
       </section>
 
