@@ -12,10 +12,10 @@ const teamMembers = [
     accentColor: '#10b981', // สีเขียวมรกต
   },
   {
-    name: 'ชื่อ-นามสกุล สมาชิกคนที่ 2',
-    role: 'AI & Full-Stack Developer',
-    skills: ['React', 'Node.js', 'LLM Integration'],
-    portfolioUrl: '#', // ใส่ลิงก์เว็บของคนที่ 2 ตรงนี้
+    name: 'กุลปริยา (Kulpriya)',
+    role: 'Frontend & UI/UX Developer',
+    skills: ['React', 'JavaScript', 'UI/UX Design'],
+    portfolioUrl: 'https://kulpriya123.github.io/pixel-adventure/', // ใส่ลิงก์เว็บของคนที่ 2 ตรงนี้
     accentColor: '#3b82f6', // สีน้ำเงิน
   },
   {
