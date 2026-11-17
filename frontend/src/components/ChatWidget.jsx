@@ -1,12 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import { Send, Bot, Loader2 } from 'lucide-react';
+import { Send, Bot, Loader2, Sparkles } from 'lucide-react';
+
+// รายการคำถามแนะนำ (สามารถเพิ่มชื่อเพื่อนคนที่ 2 และ 3 เข้าไปตรงนี้ได้ครับ)
+const QUICK_PROMPTS = [
+  'สมาชิกในกลุ่มมีใครบ้าง?',
+  'พีรพัฒน์ถนัดด้านไหน?',
+  'มีผลงานหรือโปรเจกต์อะไรบ้าง?',
+];
 
 export default function ChatWidget() {
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: 'สวัสดีครับ! สอบถามข้อมูลทักษะและผลงานของสมาชิกในกลุ่มได้เลยครับ',
+      text: 'สวัสดีครับ! สอบถามข้อมูลทักษะและผลงานของสมาชิกทั้ง 3 คนในกลุ่มได้เลยครับ หรือกดเลือกคำถามแนะนำด้านล่างก็ได้ครับ',
       time: new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -14,24 +21,20 @@ export default function ChatWidget() {
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // เลื่อนลงล่างสุดอัตโนมัติเมื่อมีข้อความใหม่
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
 
-  const sendMessage = async (e) => {
-    e.preventDefault();
-    if (!input.trim() || loading) return;
+  const handleSendText = async (textToSend) => {
+    if (!textToSend.trim() || loading) return;
 
-    const userMsg = input;
     const currentTime = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
-    
     setInput('');
-    setMessages(prev => [...prev, { sender: 'user', text: userMsg, time: currentTime }]);
+    setMessages(prev => [...prev, { sender: 'user', text: textToSend, time: currentTime }]);
     setLoading(true);
 
     try {
-      const res = await axios.post('https://chatbot-nine-sable-75.vercel.app/api/chat', { message: userMsg });
+      const res = await axios.post('https://chatbot-nine-sable-75.vercel.app/api/chat', { message: textToSend });
       const botTime = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
       setMessages(prev => [...prev, { sender: 'bot', text: res.data.reply, time: botTime }]);
     } catch (err) {
@@ -42,9 +45,14 @@ export default function ChatWidget() {
     }
   };
 
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    handleSendText(input);
+  };
+
   return (
     <div style={styles.container}>
-      {/* แถบหัวข้อด้านบน (Header) */}
+      {/* แถบหัวข้อด้านบน */}
       <div style={styles.header}>
         <div style={styles.botAvatarHeader}>
           <Bot size={22} color="#ffffff" />
@@ -55,7 +63,7 @@ export default function ChatWidget() {
         </div>
       </div>
 
-      {/* พื้นที่แสดงข้อความสนทนา (สีฟ้าสไตล์ LINE) */}
+      {/* พื้นที่สนทนา */}
       <div style={styles.chatBody}>
         {messages.map((msg, idx) => {
           const isUser = msg.sender === 'user';
@@ -67,28 +75,23 @@ export default function ChatWidget() {
                 justifyContent: isUser ? 'flex-end' : 'flex-start',
               }}
             >
-              {/* รูปโปรไฟล์บอท (เฉพาะฝั่งซ้าย) */}
               {!isUser && (
                 <div style={styles.botAvatar}>
                   <Bot size={18} color="#2c3e50" />
                 </div>
               )}
 
-              {/* เวลาส่ง (แสดงด้านซ้ายของกล่องข้อความผู้ใช้) */}
               {isUser && <span style={styles.timeText}>{msg.time}</span>}
 
-              {/* กล่องข้อความ (Bubble) */}
               <div style={isUser ? styles.userBubble : styles.botBubble}>
                 {msg.text}
               </div>
 
-              {/* เวลาส่ง (แสดงด้านขวาของกล่องข้อความบอท) */}
               {!isUser && <span style={styles.timeText}>{msg.time}</span>}
             </div>
           );
         })}
 
-        {/* สถานะกำลังพิมพ์ */}
         {loading && (
           <div style={{ ...styles.messageRow, justifyContent: 'flex-start' }}>
             <div style={styles.botAvatar}>
@@ -103,8 +106,24 @@ export default function ChatWidget() {
         <div ref={messagesEndRef} />
       </div>
 
+      {/* แถบปุ่มคำถามแนะนำ (Quick Prompts) */}
+      <div style={styles.quickPromptBar}>
+        {QUICK_PROMPTS.map((prompt, index) => (
+          <button
+            key={index}
+            type="button"
+            disabled={loading}
+            onClick={() => handleSendText(prompt)}
+            style={styles.quickPromptChip}
+          >
+            <Sparkles size={12} color="#06c755" />
+            <span>{prompt}</span>
+          </button>
+        ))}
+      </div>
+
       {/* ช่องพิมพ์ข้อความด้านล่าง */}
-      <form onSubmit={sendMessage} style={styles.footer}>
+      <form onSubmit={onFormSubmit} style={styles.footer}>
         <input
           type="text"
           value={input}
@@ -127,23 +146,22 @@ export default function ChatWidget() {
   );
 }
 
-// ชุดตกแต่งสไตล์ LINE
 const styles = {
   container: {
     width: '100%',
-    maxWidth: '420px',
-    height: '520px',
-    margin: '20px auto',
+    maxWidth: '480px',
+    height: '560px',
+    margin: '0 auto',
     borderRadius: '18px',
     overflow: 'hidden',
     display: 'flex',
     flexDirection: 'column',
-    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
-    border: '1px solid #d1d5db',
+    boxShadow: '0 12px 30px rgba(0, 0, 0, 0.12)',
+    border: '1px solid #cbd5e1',
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   },
   header: {
-    backgroundColor: '#253141',
+    backgroundColor: '#1e293b',
     color: '#ffffff',
     padding: '14px 16px',
     display: 'flex',
@@ -171,7 +189,7 @@ const styles = {
   },
   chatBody: {
     flex: 1,
-    backgroundColor: '#8cabd9', // สีพื้นหลังห้องแชท LINE
+    backgroundColor: '#8cabd9',
     padding: '16px 12px',
     overflowY: 'auto',
     display: 'flex',
@@ -202,7 +220,7 @@ const styles = {
     padding: '10px 14px',
     borderRadius: '16px',
     borderTopLeftRadius: '4px',
-    maxWidth: '70%',
+    maxWidth: '72%',
     fontSize: '14px',
     lineHeight: '1.45',
     textAlign: 'left',
@@ -211,12 +229,12 @@ const styles = {
     wordBreak: 'break-word',
   },
   userBubble: {
-    backgroundColor: '#8de055', // สีเขียวกล่องข้อความฝั่งเราใน LINE
+    backgroundColor: '#8de055',
     color: '#111827',
     padding: '10px 14px',
     borderRadius: '16px',
     borderTopRightRadius: '4px',
-    maxWidth: '70%',
+    maxWidth: '72%',
     fontSize: '14px',
     lineHeight: '1.45',
     textAlign: 'left',
@@ -228,6 +246,29 @@ const styles = {
     fontSize: '10px',
     color: '#f3f4f6',
     marginBottom: '2px',
+    flexShrink: 0,
+  },
+  quickPromptBar: {
+    backgroundColor: '#f8fafc',
+    padding: '8px 10px',
+    display: 'flex',
+    gap: '6px',
+    overflowX: 'auto',
+    borderTop: '1px solid #e2e8f0',
+    scrollbarWidth: 'none',
+  },
+  quickPromptChip: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '4px',
+    backgroundColor: '#ffffff',
+    border: '1px solid #cbd5e1',
+    borderRadius: '16px',
+    padding: '5px 11px',
+    fontSize: '12px',
+    color: '#334155',
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
     flexShrink: 0,
   },
   footer: {
@@ -249,7 +290,7 @@ const styles = {
     outline: 'none',
   },
   sendButton: {
-    backgroundColor: '#06c755', // สีเขียวปุ่มส่งของ LINE
+    backgroundColor: '#06c755',
     border: 'none',
     borderRadius: '50%',
     width: '38px',
