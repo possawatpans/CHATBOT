@@ -1,0 +1,439 @@
+/* ===== อินโทร: กองใบไม้ + นกทูแคน ===== */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.intro.fly {
+  pointer-events: none;
+}
+
+.intro-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, #1f6b3a, #0b2f1d);
+  transition: opacity 1s ease 0.2s;
+}
+
+.intro.burst .intro-bg,
+.intro.fly .intro-bg {
+  opacity: 0;
+}
+
+/* ใบไม้ */
+.il {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%) rotate(var(--r));
+  animation: rustle 3.5s ease-in-out var(--d) infinite alternate;
+  transition:
+    transform 1.5s cubic-bezier(0.2, 0.75, 0.2, 1) var(--d),
+    opacity 1s ease calc(var(--d) + 0.35s);
+  will-change: transform;
+}
+
+.il svg {
+  display: block;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes rustle {
+  from {
+    rotate: -2deg;
+  }
+  to {
+    rotate: 2deg;
+  }
+}
+
+@keyframes shake {
+  from {
+    rotate: -4deg;
+    translate: -0.4vmax 0;
+  }
+  to {
+    rotate: 4deg;
+    translate: 0.4vmax 0;
+  }
+}
+
+.intro.inside .il {
+  animation: shake 0.1s linear infinite alternate;
+}
+
+.intro.burst .il,
+.intro.fly .il {
+  animation: none;
+  opacity: 0;
+  transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--r2));
+}
+
+/* นก */
+.ib {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: clamp(190px, 38vmin, 320px);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: transform 0.75s cubic-bezier(0.55, 0, 0.9, 0.45);
+}
+
+.ib .toucan {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.4));
+}
+
+.intro.idle .ib .toucan {
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+.intro.idle .ib::before {
+  content: '';
+  position: absolute;
+  inset: -8%;
+  border: 3px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  animation: ping 1.8s ease-out infinite;
+}
+
+.ib:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 6px;
+  border-radius: 24px;
+}
+
+.intro.dive .ib,
+.intro.inside .ib,
+.intro.burst .ib,
+.intro.fly .ib {
+  transform: translate(-50%, -50%) scale(0.3);
+}
+
+.intro.inside .ib,
+.intro.burst .ib {
+  z-index: 1; /* นกอยู่หลังใบไม้ = บินเข้าไปในกอง */
+}
+
+.intro.fly .ib {
+  transition: none;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+
+@keyframes ping {
+  from {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+.intro-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 9%;
+  z-index: 4;
+  margin: 0;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: rgba(8, 40, 24, 0.78);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease;
+}
+
+.intro:not(.idle) .intro-hint,
+.intro:not(.idle) .intro-skip {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-skip {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 4;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(8, 40, 24, 0.6);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.intro-skip:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* ===== ปีกและหางนก ===== */
+.toucan .wing,
+.toucan .wing-far {
+  transform-box: view-box;
+  transform-origin: 120px 96px; /* จุดไหล่ */
+}
+
+.toucan .tail {
+  transform-box: view-box;
+  transform-origin: 98px 150px;
+}
+
+@keyframes wing-hover {
+  from {
+    transform: rotate(26deg);
+  }
+  to {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes wing-flap {
+  from {
+    transform: rotate(74deg) scale(1.22);
+  }
+  to {
+    transform: rotate(-16deg) scale(1.04);
+  }
+}
+
+@keyframes wing-land {
+  from {
+    transform: rotate(60deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes tail-flap {
+  from {
+    transform: rotate(-9deg);
+  }
+  to {
+    transform: rotate(9deg);
+  }
+}
+
+@keyframes flight-bob {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-7px);
+  }
+}
+
+/* รอแตะ: บินอยู่กับที่ */
+.intro.idle .toucan .wing,
+.intro.idle .toucan .wing-far {
+  animation: wing-hover 0.3s ease-in-out infinite alternate;
+}
+
+.intro.idle .toucan .tail {
+  animation: tail-flap 0.6s ease-in-out infinite alternate;
+}
+
+/* บินไปกิ่งไม้ (มองด้านข้าง): กระพือปีกเร็ว */
+.intro.fly .toucan .wing,
+.intro.fly .toucan .wing-far {
+  animation: wing-flap 0.17s ease-in-out infinite alternate;
+}
+
+.intro.fly .toucan .tail {
+  animation: tail-flap 0.34s ease-in-out infinite alternate;
+}
+
+.intro.fly .ib .toucan {
+  animation: flight-bob 0.34s ease-in-out infinite alternate;
+}
+
+/* ใกล้ถึงกิ่ง: กางปีกเบรกแล้วพับปีก (ต้องอยู่ต่อจากกฎ .fly ด้านบน) */
+.intro.land .toucan .wing,
+.intro.land .toucan .wing-far {
+  animation: wing-land 0.3s ease-out forwards;
+}
+
+.intro.land .toucan .tail,
+.intro.land .ib .toucan {
+  animation: none;
+}
+
+/* ===== มุมมองด้านหลัง: ตอนบินเข้ากองใบไม้ ===== */
+.toucan .wing-b {
+  transform-box: view-box;
+  transform-origin: 146px 84px; /* โคนปีกข้างขวา (ข้างซ้ายสะท้อนมาจากกัน) */
+  animation: wing-back-flap 0.18s ease-in-out infinite alternate;
+}
+
+@keyframes wing-back-flap {
+  from {
+    transform: rotate(-50deg);
+  }
+  to {
+    transform: rotate(34deg);
+  }
+}
+
+/* หันหลังให้คนดูเมื่อเริ่มพุ่งเข้ากอง */
+.toucan-back {
+  transform-origin: 50% 50%;
+  animation: turn-away 0.3s ease-out both;
+}
+
+@keyframes turn-away {
+  from {
+    transform: scaleX(0.15);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ===== กิ่งไม้ในส่วนหัวของหน้าหลัก ===== */
+.perch {
+  position: absolute;
+  top: clamp(140px, 21vw, 240px);
+  right: 0;
+  z-index: 1;
+  width: clamp(230px, 36vw, 430px);
+  aspect-ratio: 400 / 160;
+}
+
+.branch {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.perch-toucan {
+  position: absolute;
+  left: 30%;
+  bottom: 27%;
+  width: 44%;
+}
+
+.perch-toucan .toucan {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: scaleX(-1); /* หันหน้าเข้าหาเนื้อหา */
+  transform-origin: 50% 82%;
+}
+
+.intro-on .perch-toucan {
+  visibility: hidden;
+}
+
+.site:not(.intro-on) .perch-toucan .toucan {
+  animation: land 0.7s ease-out, sway 5s ease-in-out 0.7s infinite;
+}
+
+@keyframes land {
+  0% {
+    transform: scaleX(-1) translateY(-14px);
+  }
+  55% {
+    transform: scaleX(-1) translateY(3px);
+  }
+  100% {
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: scaleX(-1) rotate(0deg);
+  }
+  50% {
+    transform: scaleX(-1) rotate(2deg);
+  }
+}
+
+/* นกที่เกาะกิ่ง: สะบัดปีกเป็นระยะ + แกว่งหาง */
+@keyframes perch-flutter {
+  0%,
+  82%,
+  100% {
+    transform: rotate(0deg);
+  }
+  86% {
+    transform: rotate(70deg) scale(1.2);
+  }
+  90% {
+    transform: rotate(10deg);
+  }
+  94% {
+    transform: rotate(62deg) scale(1.15);
+  }
+  98% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes tail-wag {
+  from {
+    transform: rotate(-4deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+}
+
+.site:not(.intro-on) .perch-toucan .wing,
+.site:not(.intro-on) .perch-toucan .wing-far {
+  animation: perch-flutter 8s ease-in-out 1.5s infinite;
+}
+
+.site:not(.intro-on) .perch-toucan .tail {
+  animation: tail-wag 3.5s ease-in-out infinite alternate;
+}
+
+@media (max-width: 600px) {
+  .perch {
+    top: auto;
+    bottom: 36px;
+    right: 4%;
+    width: 220px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro .il,
+  .intro .ib .toucan,
+  .intro .ib::before,
+  .perch-toucan .toucan,
+  .toucan .wing,
+  .toucan .wing-far,
+  .toucan .wing-b,
+  .toucan-back,
+  .toucan .tail {
+    animation: none !important;
+  }
+}
