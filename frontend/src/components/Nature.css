@@ -1,0 +1,676 @@
+/* ==========================================================
+   ฉากป่า: เถาวัลย์ สัตว์ ใบไม้ร่วง ใบไม้ปัดตอนเปลี่ยนหน้า
+   ========================================================== */
+
+/* ---------- พื้นที่ฉากป่าหน้าหลัก ---------- */
+.stage {
+  position: relative;
+  overflow-x: clip;
+}
+
+.stage > main {
+  position: relative;
+  z-index: 1;
+}
+
+.jungle {
+  position: absolute;
+  inset: -180px 0 0 0; /* ยื่นขึ้นไปทับส่วนหัวสีเขียว ให้เถาวัลย์ดูห้อยลงมาจากโค้ง */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.jungle > * {
+  position: absolute;
+}
+
+/* ---------- เถาวัลย์ ---------- */
+.vine {
+  display: block;
+  width: clamp(56px, 6vw, 96px);
+  height: auto;
+  overflow: visible;
+  pointer-events: none;
+  transform-origin: 50% 0;
+  animation: vine-sway 6s ease-in-out infinite alternate;
+}
+
+.vine.flip {
+  scale: -1 1;
+}
+
+.vl {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: vl-sway 3.2s ease-in-out var(--vd, 0s) infinite alternate;
+}
+
+@keyframes vine-sway {
+  from {
+    rotate: -3deg;
+  }
+  to {
+    rotate: 3deg;
+  }
+}
+
+@keyframes vl-sway {
+  from {
+    rotate: -7deg;
+  }
+  to {
+    rotate: 7deg;
+  }
+}
+
+.jv-1 {
+  left: 2%;
+  top: 0;
+}
+
+.jv-2 {
+  right: 13%;
+  top: 0;
+  animation-duration: 7.5s;
+}
+
+.jv-3 {
+  left: 8%;
+  top: 0;
+  width: clamp(44px, 4.5vw, 70px);
+  animation-duration: 5s;
+}
+
+/* ---------- ลิงห้อยเถา ---------- */
+.monkey-wrap {
+  right: 4%;
+  top: 0;
+  width: clamp(88px, 7vw, 118px);
+}
+
+.monkey {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  transform-origin: 50% 0;
+  animation: swing 4.4s ease-in-out infinite alternate;
+}
+
+.m-arm,
+.m-tail {
+  transform-box: fill-box;
+  transform-origin: 0% 0%;
+}
+
+.m-arm {
+  animation: arm-wave 1.6s ease-in-out infinite alternate;
+}
+
+.m-tail {
+  animation: tail-sway 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes swing {
+  from {
+    rotate: -9deg;
+  }
+  to {
+    rotate: 9deg;
+  }
+}
+
+@keyframes arm-wave {
+  from {
+    rotate: -14deg;
+  }
+  to {
+    rotate: 16deg;
+  }
+}
+
+@keyframes tail-sway {
+  from {
+    rotate: -8deg;
+  }
+  to {
+    rotate: 10deg;
+  }
+}
+
+/* ---------- กบบนใบบัว/ใบไม้ลอย ---------- */
+.frog-wrap {
+  left: 6%;
+  bottom: 8px;
+  width: 112px;
+}
+
+.frog {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.frog-leaf {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: leaf-bob 3.6s ease-in-out infinite alternate;
+}
+
+.frog-body {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: frog-hop 5.5s ease-in-out infinite;
+}
+
+.frog-belly {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: breathe 2.2s ease-in-out infinite alternate;
+}
+
+.frog-eyes {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: blink 4.8s ease-in-out infinite;
+}
+
+@keyframes leaf-bob {
+  from {
+    translate: 0 -2px;
+    rotate: -1.5deg;
+  }
+  to {
+    translate: 0 2px;
+    rotate: 1.5deg;
+  }
+}
+
+@keyframes frog-hop {
+  0%,
+  62%,
+  100% {
+    translate: 0 0;
+    scale: 1 1;
+  }
+  70% {
+    translate: 0 0;
+    scale: 1.06 0.9;
+  }
+  80% {
+    translate: 0 -30px;
+    scale: 0.95 1.08;
+  }
+  90% {
+    translate: 0 0;
+    scale: 1.08 0.92;
+  }
+  95% {
+    scale: 1 1;
+  }
+}
+
+@keyframes breathe {
+  from {
+    scale: 1 1;
+  }
+  to {
+    scale: 1.12 1.18;
+  }
+}
+
+@keyframes blink {
+  0%,
+  90%,
+  100% {
+    scale: 1 1;
+  }
+  94% {
+    scale: 1 0.1;
+  }
+}
+
+/* ---------- ผีเสื้อ ---------- */
+.bf {
+  left: 0;
+  width: var(--w, 46px);
+  animation: bf-x var(--dur, 26s) linear var(--delay, 0s) infinite;
+}
+
+.bf.rev {
+  animation-direction: reverse;
+}
+
+.bf-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: bf-y 3.2s ease-in-out infinite alternate;
+}
+
+.bf-wings {
+  transform-box: view-box;
+  transform-origin: 30px 25px;
+  animation: bf-flap 0.28s ease-in-out infinite alternate;
+}
+
+.bf-w1 {
+  fill: var(--w1);
+}
+
+.bf-w2 {
+  fill: var(--w2);
+}
+
+.bf-a {
+  --w1: #ffb02e;
+  --w2: #ff7a1c;
+}
+
+.bf-b {
+  --w1: #4cb7ff;
+  --w2: #2f7fe0;
+}
+
+.bf-c {
+  --w1: #ff8fc0;
+  --w2: #e0488e;
+}
+
+@keyframes bf-x {
+  from {
+    translate: -12vw 0;
+  }
+  to {
+    translate: 112vw 0;
+  }
+}
+
+@keyframes bf-y {
+  from {
+    translate: 0 -26px;
+    rotate: -12deg;
+  }
+  to {
+    translate: 0 26px;
+    rotate: 12deg;
+  }
+}
+
+@keyframes bf-flap {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0.22);
+  }
+}
+
+/* ---------- หิ่งห้อย ---------- */
+.ff {
+  left: var(--x);
+  top: var(--y);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffe45e;
+  box-shadow: 0 0 8px 3px rgba(255, 205, 50, 0.65);
+  opacity: 0;
+  animation:
+    ff-drift var(--dur) ease-in-out var(--delay) infinite alternate,
+    ff-glow 2.8s ease-in-out var(--delay) infinite;
+}
+
+@keyframes ff-drift {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: var(--mx) var(--my);
+  }
+}
+
+@keyframes ff-glow {
+  0%,
+  100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ---------- ใบไม้ร่วง ---------- */
+.fall {
+  --fall: 640px;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.jungle .fall {
+  inset: 180px 0 0 0;
+}
+
+.fall.fixed {
+  --fall: 112vh;
+  position: fixed;
+}
+
+.fl {
+  position: absolute;
+  top: -60px;
+  left: var(--left);
+  width: var(--s);
+  height: calc(var(--s) * 1.2);
+  opacity: 0.85;
+  animation: fl-fall var(--dur) linear var(--delay) infinite;
+}
+
+.fl svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: fl-swing calc(var(--dur) / 4) ease-in-out infinite alternate;
+}
+
+@keyframes fl-fall {
+  from {
+    transform: translateY(-4vh) rotate(0deg);
+  }
+  to {
+    transform: translateY(var(--fall)) rotate(var(--spin));
+  }
+}
+
+@keyframes fl-swing {
+  from {
+    translate: calc(var(--sway) * -1) 0;
+    rotate: -25deg;
+  }
+  to {
+    translate: var(--sway) 0;
+    rotate: 25deg;
+  }
+}
+
+/* ---------- ใบไม้ปัดตอนเปลี่ยนหน้า ---------- */
+.wipe {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.wipe.cover {
+  pointer-events: auto;
+}
+
+.wipe-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, #1f6b3a, #0b2f1d);
+  opacity: 0;
+}
+
+.wipe.cover .wipe-bg {
+  animation: wb-in 0.45s ease 0.2s both;
+}
+
+.wipe.reveal .wipe-bg {
+  animation: wb-out 0.5s ease both;
+}
+
+@keyframes wb-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes wb-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.wl {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  translate: -50% -50%;
+  will-change: transform;
+}
+
+.wl svg {
+  display: block;
+}
+
+.wipe.cover .wl {
+  animation: wl-in 0.6s cubic-bezier(0.2, 0.75, 0.25, 1) var(--d) both;
+}
+
+.wipe.reveal .wl {
+  animation: wl-out 0.7s cubic-bezier(0.55, 0.05, 0.85, 0.4) var(--d) both;
+}
+
+@keyframes wl-in {
+  from {
+    transform: translate(-120vw, var(--dy)) rotate(calc(var(--r) - 140deg));
+  }
+  to {
+    transform: translate(0, 0) rotate(var(--r));
+  }
+}
+
+@keyframes wl-out {
+  from {
+    transform: translate(0, 0) rotate(var(--r));
+  }
+  to {
+    transform: translate(120vw, var(--dy)) rotate(calc(var(--r) + 140deg));
+  }
+}
+
+/* ---------- หน้าแชท ---------- */
+.chat-scene {
+  position: relative;
+  overflow-x: clip;
+}
+
+.vines {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.vines .vine {
+  position: absolute;
+  top: 0;
+}
+
+.vines .v1 {
+  left: 1.5%;
+}
+
+.vines .v2 {
+  right: 2%;
+  animation-duration: 7.5s;
+}
+
+.vines .v3 {
+  left: 6.5%;
+  width: clamp(40px, 4vw, 64px);
+  animation-duration: 5s;
+}
+
+/* ใบไม้โผล่จากหลังกรอบแชท */
+.chat-page .cl {
+  position: absolute;
+  z-index: -1;
+  width: 120px;
+}
+
+.cl-1 {
+  top: 30px;
+  left: -64px;
+  color: #3a9d4a;
+  transform: rotate(-38deg);
+  animation: float 8s ease-in-out infinite;
+}
+
+.cl-2 {
+  top: 130px;
+  right: -60px;
+  width: 100px;
+  color: #52b04a;
+  transform: rotate(40deg);
+  animation: float 9s ease-in-out infinite reverse;
+}
+
+.cl-3 {
+  bottom: 80px;
+  left: -72px;
+  width: 140px;
+  color: #1f6b3a;
+  transform: rotate(-70deg);
+  animation: float 10s ease-in-out infinite;
+}
+
+.cl-4 {
+  bottom: 30px;
+  right: -70px;
+  color: #7bb243;
+  transform: rotate(55deg);
+  animation: float 7s ease-in-out infinite reverse;
+}
+
+/* นกทูแคนเกาะขอบกรอบแชท (ใช้ท่าสะบัดปีกเดียวกับนกบนกิ่งหน้าหลัก) */
+.perch-toucan.chat-toucan {
+  left: auto;
+  bottom: auto;
+  top: -78px;
+  right: 74px;
+  width: 108px;
+  z-index: 3;
+}
+
+/* ข้อความแชทเด้งขึ้นมา */
+.cw-row {
+  transform-origin: left bottom;
+  animation: nat-pop 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.cw-row.user {
+  transform-origin: right bottom;
+}
+
+.cw-avatar-lg {
+  animation: nat-bob 3.6s ease-in-out infinite;
+}
+
+.cw-status::before {
+  animation: nat-pulse 2s ease-out infinite;
+}
+
+@keyframes nat-pop {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+    scale: 0.92;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes nat-bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -3px;
+  }
+}
+
+@keyframes nat-pulse {
+  from {
+    box-shadow: 0 0 0 0 rgba(123, 178, 67, 0.7);
+  }
+  to {
+    box-shadow: 0 0 0 8px rgba(123, 178, 67, 0);
+  }
+}
+
+/* ---------- จอเล็ก: ซ่อนของที่จะบังเนื้อหา ---------- */
+@media (max-width: 1279px) {
+  .monkey-wrap,
+  .frog-wrap {
+    display: none;
+  }
+}
+
+@media (max-width: 1099px) {
+  .jv {
+    display: none;
+  }
+}
+
+@media (max-width: 1199px) {
+  .vines {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .perch-toucan.chat-toucan {
+    width: 86px;
+    top: -62px;
+    right: 44px;
+  }
+}
+
+/* ---------- ลดการเคลื่อนไหว ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .vine,
+  .vl,
+  .monkey,
+  .m-arm,
+  .m-tail,
+  .frog-leaf,
+  .frog-body,
+  .frog-belly,
+  .frog-eyes,
+  .bf,
+  .bf-svg,
+  .bf-wings,
+  .ff,
+  .fl,
+  .fl svg,
+  .cl,
+  .cw-row,
+  .cw-avatar-lg,
+  .cw-status::before {
+    animation: none !important;
+  }
+
+  .bf,
+  .ff,
+  .fall {
+    display: none;
+  }
+}

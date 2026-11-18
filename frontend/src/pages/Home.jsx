@@ -3,6 +3,7 @@ import { ArrowUpRight, User, Bot, Database, Code, Briefcase } from 'lucide-react
 import Leaf from '../components/Leaf';
 import Perch from '../components/Perch';
 import Footer from '../components/Footer';
+import Jungle from '../components/Jungle';
 
 // ข้อมูลสมาชิกในกลุ่ม 3 คน (เปลี่ยนชื่อ ตำแหน่ง ทักษะ และลิงก์ของคนที่ 2 และ 3 ได้เลยครับ)
 const teamMembers = [
@@ -78,48 +79,51 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="wrap">
-        <section id="members" className="section">
-          <div className="section-head">
-            <h2>Team Members</h2>
-            <p>สมาชิกในกลุ่มทั้ง 3 คน เลือกเพื่อเข้าชมผลงาน</p>
-          </div>
+      <div className="stage">
+        <Jungle />
+        <main className="wrap">
+          <section id="members" className="section">
+            <div className="section-head">
+              <h2>Team Members</h2>
+              <p>สมาชิกในกลุ่มทั้ง 3 คน เลือกเพื่อเข้าชมผลงาน</p>
+            </div>
 
-          <div className="members">
-            {teamMembers.map((member) => (
-              <a
-                key={member.name}
-                className="member"
-                href={member.portfolioUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ '--c': member.accentColor }}
-              >
-                <span className="avatar" aria-hidden="true">
-                  {member.photo ? (
-                    <img src={member.photo} alt="" loading="lazy" />
-                  ) : (
-                    <User size={26} color={member.accentColor} />
-                  )}
-                </span>
-                <h3 className="member-name">{member.name}</h3>
-                <p className="member-role">{member.role}</p>
-                <div className="chips">
-                  {member.skills.map((skill) => (
-                    <span key={skill} className="chip">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-                <span className="member-go">
-                  ดู Portfolio
-                  <ArrowUpRight size={16} strokeWidth={1.75} />
-                </span>
-              </a>
-            ))}
-          </div>
-        </section>
-      </main>
+            <div className="members">
+              {teamMembers.map((member) => (
+                <a
+                  key={member.name}
+                  className="member"
+                  href={member.portfolioUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ '--c': member.accentColor }}
+                >
+                  <span className="avatar" aria-hidden="true">
+                    {member.photo ? (
+                      <img src={member.photo} alt="" loading="lazy" />
+                    ) : (
+                      <User size={26} color={member.accentColor} />
+                    )}
+                  </span>
+                  <h3 className="member-name">{member.name}</h3>
+                  <p className="member-role">{member.role}</p>
+                  <div className="chips">
+                    {member.skills.map((skill) => (
+                      <span key={skill} className="chip">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="member-go">
+                    ดู Portfolio
+                    <ArrowUpRight size={16} strokeWidth={1.75} />
+                  </span>
+                </a>
+              ))}
+            </div>
+          </section>
+        </main>
+      </div>
 
       <section className="panel">
         <Leaf className="leaf-c" />
