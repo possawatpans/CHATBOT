@@ -227,34 +227,144 @@
   font-size: 15px;
 }
 
-/* การ์ดสมาชิกทรงใบไม้ */
-.members {
+/* ===== Team Members: คอลัมน์กลางแบบซิกแซก (การ์ดสลับกับภาพสัตว์) ===== */
+.zigzag {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 56px clamp(18px, 4vw, 36px);
+  background: linear-gradient(180deg, #ffffff 0%, #f1f8e6 55%, #deedc3 100%);
+  border-radius: 64px 64px 44px 44px;
+  box-shadow: 0 24px 60px rgba(31, 94, 68, 0.16);
+}
+
+/* ใบไม้ใหญ่โผล่จากหลังขอบคอลัมน์ */
+.zz-leaf {
+  position: absolute;
+  z-index: -1;
+}
+
+.zz-leaf-1 {
+  top: 120px;
+  left: -64px;
+  width: 112px;
+  color: #3a9d4a;
+  transform: rotate(-38deg);
+  animation: float 8s ease-in-out infinite;
+}
+
+.zz-leaf-2 {
+  top: 330px;
+  right: -72px;
+  width: 124px;
+  color: #7bb243;
+  transform: rotate(46deg);
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+.zz-leaf-3 {
+  bottom: 150px;
+  left: -58px;
+  width: 100px;
+  color: #1f6b3a;
+  transform: rotate(-70deg);
+  animation: float 9s ease-in-out infinite;
+}
+
+.zz-rows {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 24px;
+  gap: 40px;
   margin-top: 40px;
 }
 
+/* เส้นประกลางคอลัมน์ + จุดกลมของแต่ละแถว */
+.zz-rows::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-left: 2px dashed rgba(123, 178, 67, 0.6);
+  translate: -50% 0;
+}
+
+.zz-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: stretch;
+}
+
+.zz-row::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--line-green);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 5px rgba(123, 178, 67, 0.18);
+  translate: -50% -50%;
+}
+
+/* แถวที่ 2: การ์ดอยู่ซ้าย ภาพอยู่ขวา */
+.zz-row.flip .zz-art {
+  order: 2;
+}
+
+.zz-art {
+  position: relative;
+  min-height: 290px;
+}
+
+/* การ์ดสมาชิกทรงใบไม้ */
 .member {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  padding: 32px 28px;
-  background: linear-gradient(145deg, #3a853a 0%, #26704a 55%, #1f5e44 100%);
+  min-height: 290px;
+  padding: 36px 32px 30px;
+  border-radius: 80px 20px 80px 20px;
+  background: linear-gradient(135deg, #1f5e44 0%, #2f7d45 55%, #5c9d3d 100%);
   box-shadow: 0 14px 30px rgba(31, 94, 68, 0.22);
   color: #fff;
   text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.member:nth-child(odd) {
-  border-radius: 72px 24px 72px 24px;
+.zz-row.flip .member {
+  border-radius: 20px 80px 20px 80px;
 }
 
-.member:nth-child(even) {
-  border-radius: 24px 72px 24px 72px;
+/* ใบไม้สีขาวที่ขอบนอกของการ์ด */
+.member-deco {
+  position: absolute;
+  top: 20px;
+  right: 18px;
+  width: 54px;
+  color: rgba(255, 255, 255, 0.88);
+  filter: drop-shadow(0 3px 6px rgba(31, 94, 68, 0.3));
+  transform: rotate(25deg);
+  transition: transform 0.4s ease;
 }
+
+.zz-row.flip .member-deco {
+  right: 18px;
+  left: auto;
+  transform: rotate(25deg);
+}
+
+.member:hover .member-deco {
+  transform: rotate(38deg) scale(1.08);
+}
+
 
 .member:hover,
 .member:focus-visible {
@@ -467,6 +577,40 @@
     padding: 0 18px;
   }
 
+  .zigzag {
+    padding: 44px 16px;
+    border-radius: 44px 44px 32px 32px;
+  }
+
+  .zz-rows::before,
+  .zz-row::after {
+    display: none;
+  }
+
+  .zz-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .zz-row.flip .zz-art {
+    order: 0;
+  }
+
+  .zz-art {
+    min-height: 264px;
+  }
+
+  .member,
+  .zz-row.flip .member {
+    min-height: 0;
+    border-radius: 72px 20px 72px 20px;
+  }
+
+  .member-deco,
+  .zz-row.flip .member-deco {
+    right: 14px;
+  }
+
   .arch {
     padding-top: 128px;
   }
@@ -483,6 +627,7 @@
   }
 
   .member,
+  .member-deco,
   .btn,
   .member-go svg {
     transition: none;
@@ -610,6 +755,7 @@
 /* เลื่อนลงมาแล้วการ์ดค่อยๆ โผล่ขึ้นมา (Chrome/Edge ส่วนเบราว์เซอร์อื่นแสดงปกติไม่มีเอฟเฟกต์) */
 @supports (animation-timeline: view()) {
   .member,
+  .zz-art,
   .tile,
   .section-head {
     animation: reveal linear both;
@@ -644,6 +790,8 @@
   .page-title,
   .chat-frame,
   .member,
+  .zz-art,
+  .zz-leaf,
   .tile,
   .section-head,
   .member:hover .avatar,

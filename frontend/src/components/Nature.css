@@ -16,7 +16,7 @@
 .jungle {
   position: absolute;
   inset: -180px 0 0 0; /* ยื่นขึ้นไปทับส่วนหัวสีเขียว ให้เถาวัลย์ดูห้อยลงมาจากโค้ง */
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -82,12 +82,6 @@
 }
 
 /* ---------- ลิงห้อยเถา ---------- */
-.monkey-wrap {
-  right: 4%;
-  top: 0;
-  width: clamp(88px, 7vw, 118px);
-}
-
 .monkey {
   display: block;
   width: 100%;
@@ -139,12 +133,6 @@
 }
 
 /* ---------- กบบนใบบัว/ใบไม้ลอย ---------- */
-.frog-wrap {
-  left: 6%;
-  bottom: 8px;
-  width: 112px;
-}
-
 .frog {
   display: block;
   width: 100%;
@@ -617,15 +605,15 @@
 }
 
 /* ---------- จอเล็ก: ซ่อนของที่จะบังเนื้อหา ---------- */
-@media (max-width: 1279px) {
-  .monkey-wrap,
-  .frog-wrap {
+/* เถาวัลย์ข้างจอจะบังคอลัมน์กลางถ้าจอแคบ จึงซ่อน */
+@media (max-width: 1199px) {
+  .jv {
     display: none;
   }
 }
 
-@media (max-width: 1099px) {
-  .jv {
+@media (max-width: 999px) {
+  .zz-leaf {
     display: none;
   }
 }
@@ -641,6 +629,355 @@
     width: 86px;
     top: -62px;
     right: 44px;
+  }
+}
+
+/* ---------- ฉากสัตว์ในการ์ดสมาชิก ---------- */
+.art {
+  position: absolute;
+  inset: 0;
+}
+
+.art > * {
+  position: absolute;
+}
+
+.art-blob {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.blob-back {
+  fill: #cfe6a4;
+}
+
+.blob-front {
+  fill: #b4d67f;
+}
+
+.art-branch {
+  top: 4px;
+  left: -2%;
+  z-index: 1;
+  width: 104%;
+  height: auto;
+  overflow: visible;
+}
+
+/* ตกแต่งทั่วไป */
+.art-deco {
+  z-index: 3;
+  height: auto;
+  overflow: visible;
+}
+
+.art-flower {
+  animation: art-bob 4s ease-in-out infinite alternate;
+}
+
+.art-banana {
+  transform-origin: 50% 0;
+  animation: art-swing 3.4s ease-in-out infinite alternate;
+}
+
+.art-leaf {
+  z-index: 0;
+  animation: float 8s ease-in-out infinite;
+}
+
+.sparkle {
+  z-index: 3;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px 3px rgba(255, 255, 255, 0.85);
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+.sparkle.s1 {
+  top: 44%;
+  left: 20%;
+}
+
+.sparkle.s2 {
+  top: 52%;
+  right: 18%;
+  animation-delay: -0.9s;
+}
+
+.sparkle.s3 {
+  bottom: 22%;
+  left: 36%;
+  animation-delay: -1.7s;
+}
+
+@keyframes art-bob {
+  from {
+    translate: 0 0;
+    rotate: -4deg;
+  }
+  to {
+    translate: 0 -5px;
+    rotate: 4deg;
+  }
+}
+
+@keyframes art-swing {
+  from {
+    rotate: -8deg;
+  }
+  to {
+    rotate: 8deg;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    scale: 0.6;
+  }
+  50% {
+    opacity: 1;
+    scale: 1.2;
+  }
+}
+
+/* ฉากลิง: ห้อยจากกิ่งไม้ */
+.art-monkey {
+  top: 38px;
+  left: 50%;
+  z-index: 2;
+  width: 120px;
+  margin-left: -60px;
+}
+
+.d-banana-1 {
+  top: 40px;
+  left: 15%;
+  width: 30px;
+}
+
+.d-banana-2 {
+  top: 44px;
+  right: 16%;
+  width: 26px;
+  scale: -1 1;
+  animation-delay: -1.4s;
+}
+
+.scene-monkey .d-flower-1 {
+  bottom: 34px;
+  left: 9%;
+  width: 34px;
+}
+
+.d-leaf-1 {
+  bottom: 40px;
+  left: -10px;
+  width: 54px;
+  color: #3a9d4a;
+  transform: rotate(-40deg);
+}
+
+.d-leaf-2 {
+  right: -10px;
+  bottom: 72px;
+  width: 48px;
+  color: #52b04a;
+  transform: rotate(50deg);
+  animation-direction: reverse;
+}
+
+/* ฉากกบ: บ่อน้ำ ใบบัว กอต้นกก */
+.pond {
+  right: 9%;
+  bottom: 20px;
+  left: 9%;
+  height: 108px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 40%, #8fd6cf 0%, #5fb8b4 55%, #3f9a9c 100%);
+  box-shadow: inset 0 -8px 16px rgba(20, 80, 90, 0.25);
+}
+
+.ripple {
+  bottom: 44px;
+  left: 50%;
+  width: 150px;
+  height: 40px;
+  margin-left: -75px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  border-radius: 50%;
+  animation: ripple 3.2s ease-out infinite;
+}
+
+.ripple.r2 {
+  animation-delay: -1.6s;
+}
+
+@keyframes ripple {
+  from {
+    opacity: 0.9;
+    scale: 0.6;
+  }
+  to {
+    opacity: 0;
+    scale: 1.45;
+  }
+}
+
+.art-frog {
+  bottom: 46px;
+  left: 50%;
+  z-index: 2;
+  width: 220px;
+  margin-left: -110px;
+}
+
+.d-reeds {
+  right: 6%;
+  bottom: 40px;
+  width: 48px;
+  transform-origin: 50% 100%;
+  animation: reed-sway 4s ease-in-out infinite alternate;
+}
+
+@keyframes reed-sway {
+  from {
+    rotate: -3deg;
+  }
+  to {
+    rotate: 3deg;
+  }
+}
+
+.d-lotus {
+  bottom: 56px;
+  left: 11%;
+  width: 42px;
+}
+
+.d-flower-2 {
+  right: 25%;
+  bottom: 34px;
+  width: 26px;
+  animation-delay: -1.8s;
+}
+
+.d-leaf-3 {
+  top: 18px;
+  right: -8px;
+  width: 50px;
+  color: #52b04a;
+  transform: rotate(48deg);
+}
+
+/* ฉากสลอธ: ห้อยกิ่งไม้ นอนหลับสบาย */
+.art-sloth {
+  top: 22px;
+  left: 50%;
+  z-index: 2;
+  width: 170px;
+  margin-left: -85px;
+}
+
+.sloth {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  transform-origin: 50% 9%;
+  animation: sloth-sway 5.5s ease-in-out infinite alternate;
+}
+
+.sloth-eyes {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: blink 6s ease-in-out infinite;
+}
+
+@keyframes sloth-sway {
+  from {
+    rotate: -4deg;
+  }
+  to {
+    rotate: 4deg;
+  }
+}
+
+.zzz {
+  z-index: 3;
+  top: 92px;
+  left: 63%;
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  color: #2f8a45;
+  opacity: 0;
+  animation: zzz-up 4.2s ease-in infinite;
+}
+
+.zzz.z2 {
+  animation-delay: 1.4s;
+}
+
+.zzz.z3 {
+  font-size: 24px;
+  animation-delay: 2.8s;
+}
+
+@keyframes zzz-up {
+  0% {
+    opacity: 0;
+    translate: 0 0;
+    scale: 0.6;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 26px -46px;
+    scale: 1.3;
+  }
+}
+
+.d-flower-3 {
+  bottom: 36px;
+  left: 12%;
+  width: 32px;
+}
+
+.d-leaf-4 {
+  top: 110px;
+  left: -10px;
+  width: 50px;
+  color: #3a9d4a;
+  transform: rotate(-52deg);
+}
+
+.d-leaf-5 {
+  right: -10px;
+  bottom: 40px;
+  width: 54px;
+  color: #7bb243;
+  transform: rotate(56deg);
+  animation-direction: reverse;
+}
+
+@media (max-width: 720px) {
+  .art-monkey {
+    width: 108px;
+    margin-left: -54px;
+  }
+
+  .art-sloth {
+    width: 150px;
+    margin-left: -75px;
   }
 }
 
@@ -664,8 +1001,21 @@
   .cl,
   .cw-row,
   .cw-avatar-lg,
-  .cw-status::before {
+  .cw-status::before,
+  .sloth,
+  .sloth-eyes,
+  .art-flower,
+  .art-banana,
+  .art-leaf,
+  .d-reeds,
+  .ripple,
+  .sparkle,
+  .zzz {
     animation: none !important;
+  }
+
+  .zzz {
+    opacity: 0.75;
   }
 
   .bf,
