@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070b13">
+<title>Hunter System | Peerapat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#070b13;--panel:#0d1522;--panel2:#101c2b;--line:#1e3448;--cyan:#6ee7ff;--blue:#3297ff;--text:#e5f1fa;--muted:#8497a8;--dim:#526779;--green:#75f0c0;--gold:#f2cb75;--red:#ff7187;--mono:'IBM Plex Mono',monospace;--thai:'Noto Sans Thai',sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 54% -12%,rgba(24,120,194,.19),transparent 48%),var(--bg);color:var(--text);font:14px/1.65 var(--thai);min-height:100vh}button,a{font:inherit}button{color:inherit}.shell{min-height:100vh;display:grid;grid-template-columns:238px minmax(0,1fr)}.sidebar{position:sticky;top:0;height:100vh;background:rgba(8,14,23,.93);border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column;z-index:4}.brand{display:flex;align-items:center;gap:12px;padding:4px 8px 26px;border-bottom:1px solid var(--line)}.brand-mark{width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--cyan);color:var(--cyan);font:700 19px var(--mono);clip-path:polygon(20% 0,80% 0,100% 20%,100% 80%,80% 100%,20% 100%,0 80%,0 20%);box-shadow:0 0 20px #2cbeff35}.brand-name{font:700 12px var(--mono);letter-spacing:.12em}.brand-sub{display:block;color:var(--dim);font:10px var(--mono);margin-top:3px}.side-label{color:var(--dim);font:600 10px var(--mono);letter-spacing:.16em;margin:25px 10px 10px}.nav{display:grid;gap:5px}.nav button{border:1px solid transparent;background:none;color:var(--muted);text-align:left;padding:11px 12px;cursor:pointer;border-radius:4px;display:flex;align-items:center;gap:12px;transition:.18s}.nav button:hover,.nav button.active{color:var(--cyan);background:#102334;border-color:#21435a}.nav-icon{font:600 14px var(--mono);width:18px;text-align:center}.side-player{margin-top:auto;border:1px solid var(--line);background:linear-gradient(140deg,#0e1b29,#09111b);padding:14px;border-radius:5px}.side-person{display:flex;align-items:center;gap:11px}.avatar{width:40px;height:40px;border-radius:4px;object-fit:cover;border:1px solid #3a7897}.side-person strong{display:block;font-size:12px}.side-person small{color:var(--cyan);font:10px var(--mono)}.connection{margin-top:14px;color:var(--green);font:10px var(--mono);letter-spacing:.08em}.connection i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:7px;box-shadow:0 0 8px var(--green)}.main{min-width:0}.topbar{height:68px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4vw,54px);background:#080e17cc;position:sticky;top:0;z-index:3;backdrop-filter:blur(16px)}.crumb{font:11px var(--mono);color:var(--muted);letter-spacing:.08em}.crumb b{color:var(--cyan);font-weight:500}.top-right{display:flex;align-items:center;gap:20px;color:var(--muted);font:10px var(--mono)}.time{color:var(--text)}.system-chip{border:1px solid #21445b;padding:6px 9px;color:var(--cyan);letter-spacing:.1em}.mobile-brand,.mobile-nav{display:none}.content{max-width:1440px;margin:auto;padding:34px clamp(18px,4vw,54px) 64px}.page{display:none;animation:arrive .25s ease}.page.active{display:block}@keyframes arrive{from{opacity:.45;transform:translateY(5px)}to{opacity:1;transform:none}}.eyebrow{font:600 10px var(--mono);color:var(--cyan);letter-spacing:.2em;text-transform:uppercase}.page-title{font-size:25px;line-height:1.35;letter-spacing:-.02em;margin:5px 0 4px}.page-sub{color:var(--muted);margin:0 0 25px;font-size:12px}.title-row{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:24px}.live{font:10px var(--mono);color:var(--green);letter-spacing:.08em}.live:before{content:'';display:inline-block;width:6px;height:6px;background:currentColor;border-radius:50%;margin-right:8px;box-shadow:0 0 9px currentColor}.dashboard-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.85fr);gap:16px}.panel{border:1px solid var(--line);background:linear-gradient(145deg,rgba(15,26,40,.98),rgba(9,16,26,.98));border-radius:5px;position:relative;overflow:hidden}.panel:before{content:'';position:absolute;left:0;top:0;width:2px;height:44px;background:linear-gradient(var(--cyan),transparent);opacity:.7}.panel-head{display:flex;justify-content:space-between;align-items:center;padding:15px 17px;border-bottom:1px solid var(--line)}.panel-title{font:600 10px var(--mono);letter-spacing:.12em;color:var(--cyan)}.panel-tag{color:var(--dim);font:10px var(--mono)}.player-card{padding:20px;display:grid;grid-template-columns:120px minmax(0,1fr);gap:22px;align-items:center;min-height:196px;background:radial-gradient(ellipse at 5% 30%,#11517c40,transparent 55%),linear-gradient(140deg,#101e2d,#0b1420)}.portrait-wrap{position:relative}.portrait{display:block;width:112px;height:128px;object-fit:cover;object-position:center 22%;border:1px solid #52c7ed9c;filter:saturate(.82);clip-path:polygon(0 0,88% 0,100% 12%,100% 100%,12% 100%,0 88%)}.portrait-level{position:absolute;bottom:-8px;left:13px;background:#0a1520;border:1px solid var(--cyan);color:var(--cyan);padding:2px 9px;font:600 10px var(--mono)}.rank-line{font:600 10px var(--mono);letter-spacing:.16em;color:var(--gold)}.player-name{font-size:23px;line-height:1.4;margin:4px 0}.player-role{color:var(--muted);font-size:12px;margin:0 0 15px}.xp-top{display:flex;justify-content:space-between;color:var(--muted);font:10px var(--mono);margin-bottom:6px}.xp-top strong{color:var(--cyan);font-weight:500}.xp-track{height:7px;background:#1a2a39;border:1px solid #23384a;border-radius:1px;overflow:hidden}.xp-fill{height:100%;width:0;background:linear-gradient(90deg,#258bd8,var(--cyan));box-shadow:0 0 12px #4bd8ff99;transition:width .3s}.player-flags{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.flag{padding:3px 8px;background:#122232;border:1px solid #25445a;color:#a6c1d2;font:9px var(--mono)}.flag.rank{color:var(--gold);border-color:#5d4c2a;background:#221d13}.status-card{padding:17px}.status-line{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #192a39;color:var(--muted);font-size:11px}.status-line:last-child{border:0}.status-line b{font:600 11px var(--mono);color:var(--text)}.status-line b.cyan{color:var(--cyan)}.status-line b.green{color:var(--green)}.two-panels{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:16px}.quest-list{padding:5px 16px 13px}.quest{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid #192a39}.quest:last-child{border:0}.quest-check{width:20px;height:20px;border:1px solid #355166;background:#0b1520;color:var(--green);cursor:pointer;border-radius:3px}.quest-check.done{border-color:#398d75;background:#123328}.quest-name{font-size:11px}.quest-reward{color:var(--cyan);font:10px var(--mono);white-space:nowrap}.quest-button{border:1px solid #277b9d;background:#0c2939;color:var(--cyan);padding:6px 9px;cursor:pointer;font:10px var(--mono);border-radius:3px}.quest-button:disabled{color:var(--green);border-color:#295c4e;background:#10251f;cursor:default}.system-note{padding:15px 17px;display:flex;gap:12px;align-items:flex-start;color:var(--muted);font-size:11px}.note-icon{color:var(--gold);font:16px var(--mono)}.system-note strong{color:var(--text);font-weight:500}.section-block{margin-top:24px}.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.section-heading h2{font-size:14px;margin:0}.section-heading span{font:10px var(--mono);color:var(--dim)}.attribute-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.attribute{padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:4px}.attribute-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:10px}.attribute-value{font:600 23px var(--mono);color:var(--text);margin:8px 0}.attribute-bottom{display:flex;justify-content:space-between;align-items:center;color:var(--dim);font:9px var(--mono)}.plus{width:23px;height:23px;border:1px solid #2f5d76;background:#102235;color:var(--cyan);cursor:pointer;border-radius:3px}.plus:disabled{opacity:.35;cursor:default}.card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.info-card{padding:16px}.info-card h3{font-size:13px;margin:0 0 7px}.info-card p{color:var(--muted);font-size:11px;margin:0}.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.tag{padding:3px 7px;background:#122131;border:1px solid #20394d;color:#9cb4c5;font:9px var(--mono)}.skill-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.skill-card{padding:17px;min-height:115px}.skill-id{font:10px var(--mono);color:var(--cyan)}.skill-card h3{font-size:14px;margin:9px 0 3px}.skill-card p{font-size:11px;color:var(--muted);margin:0}.edu-card{padding:18px;border-left:2px solid var(--cyan);margin-bottom:12px}.edu-card strong{font-size:13px}.edu-card p{color:var(--muted);font-size:11px;margin:5px 0 0}.contact-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}.contact-link{color:var(--cyan);text-decoration:none;border:1px solid #2b526a;background:#102033;padding:8px 11px;border-radius:3px;font-size:11px}.contact-link:hover{background:#183248}.footer{border-top:1px solid var(--line);padding-top:18px;margin-top:34px;color:var(--dim);font:9px var(--mono);display:flex;justify-content:space-between}.toast{position:fixed;bottom:22px;right:22px;background:#0d2533;border:1px solid var(--cyan);color:var(--cyan);padding:11px 16px;font:11px var(--mono);z-index:10;opacity:0;transform:translateY(6px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:none}.modal{position:fixed;inset:0;background:#03070dbd;z-index:9;display:none;place-items:center;padding:18px}.modal.open{display:grid}.modal-card{width:min(440px,100%);padding:20px;background:#0d1724;border:1px solid #2e5d78;border-radius:5px}.modal-head{display:flex;justify-content:space-between;align-items:center}.modal-head h2{font-size:15px}.close{border:0;background:none;color:var(--muted);font-size:20px;cursor:pointer}.modal-card p{font-size:12px;color:var(--muted)}.modal-card a{color:var(--cyan)}
+.assistant-panel{height:min(650px,calc(100vh - 240px));min-height:420px;display:flex;flex-direction:column;border:1px solid #29495d;border-radius:5px;background:linear-gradient(145deg,#0e1927,#09121d);overflow:hidden}.assistant-head{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,#102538,#0c1825)}.assistant-symbol{width:36px;height:36px;display:grid;place-items:center;border:1px solid #397a93;color:var(--accent);font-size:18px}.assistant-head strong{display:block;font-size:12px}.assistant-head small{color:var(--muted);font-size:9px}.assistant-ready{margin-left:auto;color:var(--green);font:9px var(--mono)}.assistant-messages{flex:1;overflow:auto;padding:18px 22px}.assistant-welcome,.assistant-message{max-width:720px;padding:11px 13px;border:1px solid #203c50;background:#0c1b28}.assistant-welcome strong{font-size:10px}.assistant-welcome p{margin:3px 0 0;color:var(--muted);font-size:10px}.assistant-suggestions{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 0 35px}.assistant-suggestions button{padding:6px 9px;border:1px solid #29465b;background:#0c1a26;color:#b3c4cf;font:9px var(--thai);cursor:pointer}.assistant-suggestions button:hover{border-color:var(--accent);color:var(--accent)}.assistant-message{margin-top:13px}.assistant-message.user{margin-left:auto;border-color:#27536c;background:#0d2230}.assistant-message small{color:var(--accent);font:8px var(--mono)}.assistant-message p{margin:4px 0 0;color:#d4e0e8;font-size:10px;white-space:pre-wrap;overflow-wrap:anywhere}.assistant-error{border-color:#74434c;background:#26151b;color:#ffa8b0}.assistant-compose{margin:0 12px;padding:9px 11px;border:1px solid #2a4658;background:#09131d}.assistant-compose textarea{width:100%;min-height:44px;max-height:120px;resize:vertical;border:0;outline:0;background:transparent;color:var(--text);font:11px/1.7 var(--thai)}.assistant-compose textarea::placeholder{color:#6d8292}.assistant-compose-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:6px;color:var(--dim);font-size:8px}.assistant-compose .quest-button:disabled{opacity:.4;cursor:not-allowed}.assistant-disclaimer{margin:7px 12px 10px;text-align:center;color:var(--dim);font-size:8px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:1000px){.shell{grid-template-columns:205px minmax(0,1fr)}.dashboard-grid{grid-template-columns:1fr}.two-panels{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.shell{display:block}.sidebar{display:none}.topbar{height:58px;padding:0 16px}.mobile-brand{display:block;font:600 10px var(--mono);letter-spacing:.1em;color:var(--cyan)}.crumb{display:none}.top-right{gap:9px;font-size:9px}.system-chip{padding:5px 7px}.content{padding:25px 15px 88px}.title-row{align-items:flex-start;flex-direction:column;gap:2px;margin-bottom:17px}.page-title{font-size:22px}.player-card{grid-template-columns:82px minmax(0,1fr);gap:15px;padding:15px}.portrait{width:78px;height:98px}.portrait-level{left:4px;padding:2px 6px}.player-name{font-size:18px}.player-role{font-size:10px;margin-bottom:10px}.two-panels{grid-template-columns:1fr}.attribute-grid{grid-template-columns:repeat(2,1fr)}.mobile-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;bottom:0;left:0;right:0;z-index:5;background:#09111cf5;border-top:1px solid var(--line);padding:7px 6px max(7px,env(safe-area-inset-bottom));backdrop-filter:blur(14px)}.mobile-nav button{border:0;background:none;color:var(--muted);font:9px var(--mono);padding:5px 2px;cursor:pointer}.mobile-nav button.active{color:var(--cyan)}.mobile-nav span{display:block;font-size:15px;margin-bottom:1px}.skill-list,.card-grid{grid-template-columns:1fr}.footer{font-size:8px}.page-sub{font-size:11px}.assistant-panel{height:calc(100dvh - 235px);min-height:410px}.assistant-messages{padding:13px 10px}.assistant-suggestions{margin-left:0}.assistant-suggestions button{font-size:8px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.assistant-asks{display:flex;flex-wrap:wrap;gap:7px;padding:10px 12px;border-top:1px solid var(--line);background:#09131d}.assistant-asks button{padding:6px 10px;border:1px solid #29465b;background:#0c1a26;color:#b3c4cf;font:10px var(--thai);cursor:pointer}.assistant-asks button:hover:not(:disabled){border-color:var(--cyan);color:var(--cyan)}.assistant-asks button:disabled{opacity:.35;cursor:not-allowed}.assistant-asks button.clear{margin-left:auto;border-color:#5a3a42;color:#d99aa4}.assistant-asks{max-height:38%;overflow:auto}
+
+
+/* readability: all pages */
+body{font-size:16px}
+.brand-mark{font-size:21px;width:42px;height:42px}.brand-name{font-size:14px}.brand-sub{font-size:11px}
+.side-label{font-size:11px}.nav button{font-size:15px;padding:12px 13px}.nav-icon{font-size:16px;width:20px}
+.side-person strong{font-size:14px}.side-person small{font-size:11px}.connection{font-size:11px}.avatar{width:44px;height:44px}
+.crumb{font-size:13px}.top-right{font-size:12px}.topbar{height:72px}
+.eyebrow{font-size:12px}.page-title{font-size:32px}.page-sub{font-size:15px}.live{font-size:12px}
+.panel-head{padding:16px 18px}.panel-title{font-size:12px}.panel-tag{font-size:12px}
+.player-card{grid-template-columns:140px minmax(0,1fr);gap:26px;padding:24px}.portrait{width:130px;height:150px}.portrait-level{font-size:12px}
+.rank-line{font-size:12px}.player-name{font-size:28px}.player-role{font-size:15px}
+.xp-top{font-size:12px}.flag{font-size:11px}
+.status-line{font-size:14px;padding:11px 0}.status-line b{font-size:14px}
+.quest{padding:13px 0;gap:12px;grid-template-columns:26px minmax(0,1fr) auto}.quest-check{width:24px;height:24px}
+.quest-name{font-size:14px}.quest-reward{font-size:12px}.quest-button{font-size:12px;padding:8px 12px}
+.system-note{font-size:14px}.note-icon{font-size:18px}
+.section-heading h2{font-size:18px}.section-heading span{font-size:12px}
+.attribute{padding:16px}.attribute-top{font-size:13px}.attribute-value{font-size:28px}.attribute-bottom{font-size:11px}
+.info-card{padding:20px}.info-card h3{font-size:17px;margin-bottom:9px}.info-card p{font-size:14px;line-height:1.75}
+.tag{font-size:11px}
+.skill-card{padding:20px}.skill-id{font-size:12px}.skill-card h3{font-size:18px}.skill-card p{font-size:14px;line-height:1.75}
+.edu-card strong{font-size:16px}.edu-card p{font-size:14px;line-height:1.75}
+.contact-link{font-size:14px}
+.footer{font-size:11px}.toast{font-size:13px}
+.modal-head h2{font-size:18px}.modal-card p{font-size:14px}
+@media(min-width:1001px){.shell{grid-template-columns:268px minmax(0,1fr)}}
+@media(min-width:701px) and (max-width:1000px){.shell{grid-template-columns:232px minmax(0,1fr)}}
+@media(max-width:700px){
+body{font-size:15px}.page-title{font-size:25px}.page-sub{font-size:13px}.eyebrow{font-size:11px}
+.player-card{grid-template-columns:90px minmax(0,1fr);gap:16px;padding:16px}.portrait{width:86px;height:108px}
+.player-name{font-size:21px}.player-role{font-size:13px}
+.status-line,.status-line b,.quest-name,.system-note{font-size:13px}
+.info-card h3,.skill-card h3{font-size:16px}.info-card p,.skill-card p,.edu-card p{font-size:13px}
+.section-heading h2{font-size:16px}.top-right{font-size:11px}.topbar{height:60px}
+.mobile-nav button{font-size:11px}.mobile-nav span{font-size:17px}.footer{font-size:10px}
+.attribute-value{font-size:24px}.attribute-top{font-size:12px}
+}
+/* chat readability */
+.assistant-panel{height:min(760px,calc(100vh - 190px));min-height:480px}
+.assistant-head strong{font-size:16px}.assistant-head small{font-size:12px}.assistant-ready{font-size:11px}.assistant-symbol{width:42px;height:42px;font-size:20px}
+.assistant-messages{padding:22px 26px}
+.assistant-welcome,.assistant-message{max-width:820px;padding:14px 18px}
+.assistant-welcome strong{font-size:14px}.assistant-welcome p{font-size:15px;line-height:1.8;margin-top:5px}
+.assistant-message{margin-top:16px}
+.assistant-message small{font-size:11px;letter-spacing:.04em}
+.assistant-message p{font-size:15px;line-height:1.85;margin-top:6px}
+.assistant-asks{gap:9px;padding:13px 16px}
+.assistant-asks button{padding:9px 14px;font-size:13px;line-height:1.4}
+.assistant-disclaimer{font-size:11px;margin:8px 12px 12px}
+@media(max-width:700px){.assistant-panel{height:calc(100dvh - 215px);min-height:440px}.assistant-messages{padding:14px 12px}.assistant-welcome,.assistant-message{padding:12px 14px}.assistant-welcome p,.assistant-message p{font-size:14px}.assistant-asks button{font-size:12px;padding:8px 11px}.assistant-asks{max-height:42%}}
+
+/* system notification window + quest marks */
+.toast{bottom:auto;top:84px;right:24px;min-width:260px;max-width:min(380px,calc(100vw - 32px));padding:0;background:rgba(7,22,42,.94);border:1px solid #3aa9ff;color:#dff3ff;font:14px/1.6 var(--thai);box-shadow:0 0 0 1px rgba(58,169,255,.25),0 0 28px rgba(40,140,255,.45),inset 0 0 24px rgba(40,140,255,.12);backdrop-filter:blur(8px);transform:translateY(-8px)}
+.toast.show{transform:none}
+.toast-title{padding:7px 14px;border-bottom:1px solid rgba(58,169,255,.45);background:rgba(40,140,255,.16);color:#7fd0ff;font:600 12px var(--mono);letter-spacing:.14em;text-align:center}
+.toast-line{padding:3px 16px}.toast-line:nth-of-type(2){padding-top:10px}.toast-line:last-child{padding-bottom:11px}
+.toast-line:nth-of-type(3){color:#7fe7c4;font:600 13px var(--mono)}
+.toast.big{border-color:#7fd0ff;box-shadow:0 0 0 1px rgba(127,208,255,.4),0 0 44px rgba(60,170,255,.7),inset 0 0 30px rgba(60,170,255,.2)}
+.toast.big .toast-title{font-size:15px;letter-spacing:.3em;color:#bfe8ff}
+.toast.big .toast-line:nth-of-type(2){font-size:18px;font-weight:600;color:#fff}
+.quest-check{display:grid;place-items:center;cursor:default;font-size:14px;line-height:1}
+@media(max-width:700px){.toast{top:auto;bottom:80px;left:12px;right:12px;max-width:none}}
+
+/* item 8: party invite */
+.invite-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:12px 14px;border:1px solid var(--cyan);background:linear-gradient(90deg,#0c3a52,#0d2538);color:#e3f7ff;font:600 15px var(--thai);cursor:pointer;border-radius:4px;box-shadow:0 0 18px #2cbeff33;transition:.18s}
+.invite-btn:hover{background:linear-gradient(90deg,#115273,#12364f);box-shadow:0 0 26px #2cbeff66}
+.side-invite{margin-top:auto;margin-bottom:12px}.side-invite+.side-player{margin-top:0}
+.mobile-invite{display:none;width:auto;margin-top:10px}
+.title-actions{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+.modal-card{width:min(480px,100%)}
+.invite-list{display:grid;gap:9px;margin-top:16px}
+.invite-item{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:13px 15px;border:1px solid #2b526a;background:#102033;border-radius:4px;color:var(--text)!important;text-decoration:none;font-size:16px;font-weight:600}
+.invite-item span{color:var(--muted);font:12px var(--mono);font-weight:400;text-align:right;overflow-wrap:anywhere}
+.invite-item:hover{background:#183248;border-color:var(--cyan)}
+@media(max-width:700px){.mobile-invite{display:flex}.invite-item{font-size:15px}}
+/* item 7: shadow army */
+.army-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px;padding:12px 16px;border:1px solid #3d3578;background:linear-gradient(90deg,#17133f,#0d1522);border-radius:5px;font:600 13px var(--mono);color:#b9a8ff;letter-spacing:.08em}
+.army-bar b{color:#fff}
+.army-bar .quest-button{border-color:#6a4cff;background:#1a1440;color:#cbbcff;font-size:13px}
+.army-bar .quest-button:disabled{opacity:.45;cursor:default}
+.skill-card:not(.arisen){background:linear-gradient(145deg,#0b121c,#080e17);border-color:#18293a}
+.skill-card:not(.arisen) h3{color:#a9bac8}.skill-card:not(.arisen) .skill-id{color:#6c8092}
+.shadow-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+.shadow-state{font:600 12px var(--mono);letter-spacing:.16em;color:#6f7199}
+.arise-btn{padding:8px 16px;border:1px solid #6a4cff;background:#1a1440;color:#d2c6ff;font:600 13px var(--mono);letter-spacing:.22em;cursor:pointer;border-radius:3px;transition:.18s}
+.arise-btn:hover{background:#2a1f6e;box-shadow:0 0 16px #6a4cffaa}
+.skill-card.arisen{border-color:#7a5cff;background:linear-gradient(145deg,#171344,#0c1424);box-shadow:0 0 0 1px #7a5cff44,0 0 22px #6a4cff33}
+.skill-card.arisen .skill-id,.skill-card.arisen .shadow-state{color:#c3b4ff}
+.skill-card.arisen .arise-btn{display:none}
+.skill-card.rising{animation:arise .9s ease-out}
+@keyframes arise{0%{transform:translateY(10px) scale(.985);box-shadow:0 0 0 #6a4cff00}40%{box-shadow:0 0 44px #8b6cffcc,0 0 0 1px #a78bff}100%{transform:none}}
+
+/* mobile nav: 6 items incl. skills */
+@media(max-width:700px){.mobile-nav{grid-template-columns:repeat(6,1fr)}.mobile-nav button{font-size:10px;padding:5px 0}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-mark">S</div><div><span class="brand-name">HUNTER SYSTEM</span><span class="brand-sub">AWAKENING INTERFACE</span></div></div>
+  <div class="side-label">MAIN MENU</div>
+  <nav class="nav" aria-label="เมนูระบบ">
+    <button class="active" data-page="dashboard"><span class="nav-icon">⌂</span>หน้าหลักระบบ</button>
+    <button data-page="assistant"><span class="nav-icon">✧</span>มหาปราชญ์ส่วนตัว</button>
+    <button data-page="status"><span class="nav-icon">◈</span>สถานะผู้เล่น</button>
+    <button data-page="quests"><span class="nav-icon">☷</span>ภารกิจประจำวัน</button>
+    <button data-page="skills"><span class="nav-icon">✦</span>ทักษะและความสามารถ</button>
+    <button data-page="archive"><span class="nav-icon">▤</span>คลังข้อมูลผู้เล่น</button>
+  </nav>
+  <button class="invite-btn side-invite" type="button" data-invite><span aria-hidden="true">⚔</span> ส่งคำเชิญเข้าปาร์ตี้</button><div class="side-player"><div class="side-person"><img class="avatar" src="https://i.postimg.cc/hPPBSfMv/Image.jpg" alt="รูปโปรไฟล์พีรพัฒน์"><div><strong>พีรพัฒน์</strong><small>RANK <span data-rank>E</span> HUNTER</small></div></div><div class="connection"><i></i>SYSTEM CONNECTED</div></div>
+</aside>
+<main class="main">
+<header class="topbar"><span class="mobile-brand">◈ HUNTER SYSTEM</span><div class="crumb">SYSTEM / <b id="crumb-name">DASHBOARD</b></div><div class="top-right"><span class="time" id="clock">--:--:--</span><span class="system-chip">SYSTEM ONLINE</span></div></header>
+<div class="content">
+<section class="page active" id="page-dashboard">
+  <div class="title-row"><div><div class="eyebrow">PLAYER DASHBOARD / 001</div><h1 class="page-title">ยินดีต้อนรับกลับมา, ผู้เล่น</h1><p class="page-sub">ระบบพร้อมทำงาน เลือกภารกิจถัดไปของคุณ</p></div><div class="title-actions"><span class="live">LIVE STATUS</span><button class="invite-btn mobile-invite" type="button" data-invite><span aria-hidden="true">⚔</span> ส่งคำเชิญเข้าปาร์ตี้</button></div></div>
+  <div class="dashboard-grid">
+    <article class="panel"><div class="panel-head"><span class="panel-title">PLAYER PROFILE</span><span class="panel-tag">ID: P-2548</span></div><div class="player-card"><div class="portrait-wrap"><img class="portrait" src="https://i.postimg.cc/hPPBSfMv/Image.jpg" alt="พีรพัฒน์ ผู้เล่น"><span class="portrait-level">LV. <b data-level>01</b></span></div><div><div class="rank-line">RANK <span data-rank>E</span> · AWAKENED</div><h2 class="player-name">พีรพัฒน์ รุจิภิญโญโสภานนท์</h2><p class="player-role">AI & Robotics Developer · ROS2 Hunter</p><div class="xp-top"><span>EXPERIENCE</span><span><strong data-xp>0</strong> / <span data-needed>100</span> EXP</span></div><div class="xp-track" role="progressbar" aria-label="ประสบการณ์ผู้เล่น" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="xp-fill" data-fill></div></div><div class="player-flags"><span class="flag rank"><span data-rank>E</span>-RANK</span><span class="flag">CLASS: DEVELOPER</span><span class="flag">TITLE: AI TINKERER</span></div></div></div></article>
+    <article class="panel"><div class="panel-head"><span class="panel-title">PLAYER STATUS</span><span class="panel-tag">CURRENT</span></div><div class="status-card"><div class="status-line"><span>สถานะระบบ</span><b class="green">● ทำงานปกติ</b></div><div class="status-line"><span>อาชีพ</span><b>AI HUNTER</b></div><div class="status-line"><span>สายพลัง</span><b class="cyan">INT / ROBOTICS</b></div><div class="status-line"><span>ภารกิจสำเร็จ</span><b><span data-completed>0</span> / <span data-total>4</span></b></div><div class="status-line"><span>แต้มสถานะที่เหลือ</span><b class="cyan" data-points>0</b></div></div><div class="system-note"><span class="note-icon">!</span><span><strong>SYSTEM MESSAGE</strong><br><span data-message>เริ่มต้นภารกิจเพื่อรับ EXP และพัฒนาค่าสถานะ</span></span></div></article>
+  </div>
+  <div class="two-panels"><article class="panel"><div class="panel-head"><span class="panel-title">DAILY QUEST</span><button class="quest-button" data-go="quests">ดูภารกิจทั้งหมด →</button></div><div class="quest-list" data-quest-list></div></article><article class="panel"><div class="panel-head"><span class="panel-title">ABILITY SUMMARY</span><button class="quest-button" data-go="status">จัดการสถานะ →</button></div><div class="status-card" data-attribute-summary></div></article></div>
+  <div class="section-block"><div class="section-heading"><h2>ข้อมูลผู้เล่น</h2><span>PLAYER DATA</span></div><div class="card-grid"><article class="panel info-card"><h3>ปัญญาประดิษฐ์และข้อมูล</h3><p>สร้างระบบ Intelligent Chat AI เชื่อมต่อ LLM และฐานข้อมูล</p><div class="tag-row"><span class="tag">LLM</span><span class="tag">POSTGRESQL</span><span class="tag">PYTHON</span></div></article><article class="panel info-card"><h3>วิศวกรรมหุ่นยนต์</h3><p>พัฒนาระบบควบคุมและนำทางหุ่นยนต์ด้วย ROS2 Humble</p><div class="tag-row"><span class="tag">ROS2</span><span class="tag">DOCKER</span><span class="tag">LINUX</span></div></article></div></div>
+</section>
+<section class="page" id="page-assistant" aria-labelledby="assistant-title">
+  <div class="eyebrow">PERSONAL INTELLIGENCE / PROFILE KNOWLEDGE</div><h1 class="page-title" id="assistant-title">มหาปราชญ์ส่วนตัว</h1><p class="page-sub">ผู้ช่วย AI ที่ตอบจากข้อมูลการศึกษา ทักษะ และโปรเจกต์ในคลังผู้เล่น</p>
+  <div class="assistant-panel"><div class="assistant-head"><div class="assistant-symbol">✧</div><div><strong>มหาปราชญ์</strong><small>PERSONAL AI · ตอบตามข้อมูลที่มี</small></div><span class="assistant-ready">SYSTEM ACTIVE</span></div>
+    <div class="assistant-messages" id="assistant-messages" aria-live="polite"></div>
+    <div class="assistant-asks" id="assistant-asks"></div>
+    <p class="assistant-disclaimer">คำตอบทั้งหมดเตรียมไว้ล่วงหน้าจากข้อมูลในคลังผู้เล่น</p>
+  </div>
+</section>
+<section class="page" id="page-status"><div class="eyebrow">PLAYER PROFILE / ATTRIBUTES</div><h1 class="page-title">สถานะผู้เล่น</h1><p class="page-sub">จัดสรรคะแนนสถานะเพื่อพัฒนาความสามารถของผู้เล่น</p><div class="panel"><div class="panel-head"><span class="panel-title">ATTRIBUTES</span><span class="panel-tag">AVAILABLE POINTS: <b data-points>0</b></span></div><div style="padding:16px"><div class="attribute-grid" data-attributes></div></div></div><div class="section-block"><div class="section-heading"><h2>ข้อมูลการตื่นพลัง</h2><span>AWAKENING INFO</span></div><article class="panel info-card"><h3>คลาส: นักพัฒนาระบบอัจฉริยะ</h3><p>สายความสามารถผสมผสานพลังด้านปัญญาประดิษฐ์ การวิเคราะห์ข้อมูล และการควบคุมหุ่นยนต์ ความเชี่ยวชาญหลักคือการสร้างระบบที่เชื่อมต่อซอฟต์แวร์กับโลกจริง</p></article></div></section>
+<section class="page" id="page-quests"><div class="eyebrow">MISSION BOARD / DAILY</div><h1 class="page-title">ภารกิจประจำวัน</h1><p class="page-sub">สำรวจพอร์ตของพีรพัฒน์เพื่อรับ EXP — ภารกิจสำเร็จเองเมื่อคุณทำตามเงื่อนไข และรีเซ็ตทุกวัน</p><article class="panel"><div class="panel-head"><span class="panel-title">AVAILABLE QUESTS</span><span class="panel-tag"><span data-completed>0</span> / <span data-total>4</span> COMPLETE</span></div><div class="quest-list" data-quest-list></div></article><div class="section-block"><div class="section-heading"><h2>เงื่อนไขการผ่านภารกิจ</h2><span>REWARD RULES</span></div><article class="panel info-card"><h3>รับค่าประสบการณ์และเลื่อนระดับ</h3><p>เมื่อสะสม EXP ถึงเกณฑ์ ผู้เล่นจะเลื่อนระดับและได้รับแต้มสถานะ 3 แต้มสำหรับอัปเกรดค่าสถานะ ยศจะเลื่อนตามเลเวล (E → D → C → B → A → S) ภารกิจรีเซ็ตทุกวัน ส่วนเลเวลและ EXP จะถูกเก็บไว้ในเบราว์เซอร์ของคุณ</p></article></div></section>
+<section class="page" id="page-skills"><div class="eyebrow">SKILL ARCHIVE / KNOWN ABILITIES</div><h1 class="page-title">ทักษะและความสามารถ</h1><p class="page-sub">ทักษะแต่ละอย่างคือเงาที่รอการเรียก กดปุ่ม ARISE เพื่อปลุกเงาเข้ากองทัพ</p><div class="army-bar"><span>SHADOW ARMY · <b data-army-count>0</b> / <b data-army-total>6</b> ARISEN</span><button class="quest-button" type="button" data-arise-all>เรียกเงาทั้งหมด</button></div><div class="skill-list"><article class="panel skill-card" data-skill="llm"><span class="skill-id">PASSIVE · AI-01</span><h3>LLM Integration</h3><p>เชื่อมต่อโมเดลภาษาเข้ากับระบบและฐานข้อมูล</p><div class="shadow-row"><span class="shadow-state" data-shadow-state>SHADOW</span><button class="arise-btn" type="button" data-arise="llm">ARISE</button></div></article><article class="panel skill-card" data-skill="ros"><span class="skill-id">ACTIVE · ROS-02</span><h3>Robot Controller</h3><p>ควบคุมและสื่อสารระหว่าง Node บน ROS2 Humble</p><div class="shadow-row"><span class="shadow-state" data-shadow-state>SHADOW</span><button class="arise-btn" type="button" data-arise="ros">ARISE</button></div></article><article class="panel skill-card" data-skill="python"><span class="skill-id">PASSIVE · PY-03</span><h3>Python Engineering</h3><p>พัฒนาเครื่องมือและระบบประมวลผลข้อมูล</p><div class="shadow-row"><span class="shadow-state" data-shadow-state>SHADOW</span><button class="arise-btn" type="button" data-arise="python">ARISE</button></div></article><article class="panel skill-card" data-skill="docker"><span class="skill-id">ACTIVE · SYS-04</span><h3>Docker Deployment</h3><p>จัดการสภาพแวดล้อมและ deploy แอปพลิเคชัน</p><div class="shadow-row"><span class="shadow-state" data-shadow-state>SHADOW</span><button class="arise-btn" type="button" data-arise="docker">ARISE</button></div></article><article class="panel skill-card" data-skill="data"><span class="skill-id">PASSIVE · DB-05</span><h3>Data Handling</h3><p>ออกแบบการทำงานกับ PostgreSQL และ Pandas</p><div class="shadow-row"><span class="shadow-state" data-shadow-state>SHADOW</span><button class="arise-btn" type="button" data-arise="data">ARISE</button></div></article><article class="panel skill-card" data-skill="fullstack"><span class="skill-id">ACTIVE · WEB-06</span><h3>Full-stack Development</h3><p>สร้างเว็บแอปด้วย React, Express และ REST API</p><div class="shadow-row"><span class="shadow-state" data-shadow-state>SHADOW</span><button class="arise-btn" type="button" data-arise="fullstack">ARISE</button></div></article></div></section>
+<section class="page" id="page-archive"><div class="eyebrow">PLAYER ARCHIVE / RECORDS</div><h1 class="page-title">คลังข้อมูลผู้เล่น</h1><p class="page-sub">ประวัติการศึกษา โปรเจกต์ และช่องทางติดต่อของผู้เล่น</p><div class="section-heading"><h2>ประวัติการศึกษา</h2><span>EDUCATION</span></div><article class="panel edu-card"><strong>มหาวิทยาลัยกรุงเทพ (Bangkok University)</strong><p>ปริญญาตรี สาขาวิชาวิศวกรรมปัญญาประดิษฐ์และวิทยาการข้อมูล · ปัจจุบัน</p><p>มุ่งเน้น AI, Data Science และความรู้ด้านธุรกิจ</p></article><div class="section-heading section-block"><h2>บันทึกภารกิจ / โปรเจกต์</h2><span>PROJECT LOG</span></div><div class="card-grid"><article class="panel info-card"><span class="skill-id">FULL-STACK AI</span><h3>Mini Chat AI</h3><p>Python, TouchDesigner, React, Supabase, Blender, Node.js</p><div class="tag-row"><span class="tag">PYTHON</span><span class="tag">TOUCHDESIGNER</span><span class="tag">REACT</span><span class="tag">SUPABASE</span><span class="tag">BLENDER</span><span class="tag">NODE.JS</span></div><div class="contact-row"><a class="contact-link" href="https://gitlab.com/Ganji2548/bu-web-technology-week-11" target="_blank" rel="noreferrer">เปิดบันทึก GitLab ↗</a></div></article><article class="panel info-card"><span class="skill-id">ROBOTICS / ROS2</span><h3>Autonomous Navigation</h3><p>ระบบนำทางหุ่นยนต์เคลื่อนที่อัตโนมัติ จำลองสภาพแวดล้อมและจัดการเซนเซอร์ด้วย Python</p><div class="tag-row"><span class="tag">ROS2 HUMBLE</span><span class="tag">PYTHON</span></div></article></div><div class="section-block"><div class="section-heading"><h2>คำเชิญเข้าปาร์ตี้</h2><span>PARTY INVITE</span></div><article class="panel info-card"><p>ส่งคำเชิญร่วมทีม หรือสอบถามข้อมูลเพิ่มเติม</p><div class="contact-row"><a class="contact-link" href="https://gitlab.com/Ganji2548" target="_blank" rel="noreferrer">GitLab ↗</a><a class="contact-link" href="https://www.facebook.com/peerapat.rujipanyosonon" target="_blank" rel="noreferrer">Facebook ↗</a><a class="contact-link" href="https://www.instagram.com/hikaru_ganji/" target="_blank" rel="noreferrer">Instagram ↗</a><a class="contact-link" href="https://line.me/ti/p/uvv0o_xOwu" target="_blank" rel="noreferrer">LINE ↗</a><button class="contact-link" type="button" data-invite>⚔ ส่งคำเชิญ / อีเมล</button></div></article></div></section>
+<footer class="footer"><span>HUNTER SYSTEM INTERFACE · PEERAPAT R.</span><span>© <span id="year"></span> · ALL SYSTEMS NOMINAL</span></footer>
+</div>
+</main>
+</div>
+<nav class="mobile-nav" aria-label="เมนูระบบ"><button class="active" data-page="dashboard"><span>⌂</span>หน้าหลัก</button><button data-page="assistant"><span>✧</span>AI</button><button data-page="status"><span>◈</span>สถานะ</button><button data-page="quests"><span>☷</span>ภารกิจ</button><button data-page="skills"><span>✦</span>ทักษะ</button><button data-page="archive"><span>▤</span>ข้อมูล</button></nav>
+<div class="toast" role="status" aria-live="polite" id="toast"></div><div class="modal" id="invite-modal" role="dialog" aria-modal="true" aria-labelledby="invite-title"><div class="modal-card"><div class="modal-head"><h2 id="invite-title">⚔ ส่งคำเชิญเข้าปาร์ตี้</h2><button class="close" type="button" aria-label="ปิด" data-close>×</button></div><p>ชวนพีรพัฒน์ร่วมทีม หรือสอบถามข้อมูลเพิ่มเติม เลือกช่องทางที่สะดวกได้เลย</p><div class="invite-list"><a class="invite-item" href="mailto:peerapat.ruji@bumail.net">อีเมล<span>peerapat.ruji@bumail.net</span></a><a class="invite-item" href="https://line.me/ti/p/uvv0o_xOwu" target="_blank" rel="noreferrer">LINE<span>เพิ่มเพื่อน ↗</span></a><a class="invite-item" href="https://gitlab.com/Ganji2548" target="_blank" rel="noreferrer">GitLab<span>Ganji2548 ↗</span></a><a class="invite-item" href="https://www.facebook.com/peerapat.rujipanyosonon" target="_blank" rel="noreferrer">Facebook<span>peerapat.rujipanyosonon ↗</span></a><a class="invite-item" href="https://www.instagram.com/hikaru_ganji/" target="_blank" rel="noreferrer">Instagram<span>hikaru_ganji ↗</span></a></div></div></div>
+<script>
+const quests=[
+{id:'skills',name:'เปิดดูหน้าทักษะและความสามารถ',xp:25},
+{id:'archive',name:'เปิดดูคลังข้อมูลและโปรเจกต์',xp:25},
+{id:'sage',name:'ถามมหาปราชญ์ 1 คำถาม',xp:30},
+{id:'contact',name:'เปิดหน้าต่างคำเชิญเข้าปาร์ตี้',xp:30}];
+const attributes=[{name:'พละกำลัง',key:'STR',value:10},{name:'สติปัญญา',key:'INT',value:10},{name:'ความคล่องแคล่ว',key:'AGI',value:10},{name:'การรับรู้',key:'PER',value:10}];
+const player={level:1,xp:0,points:0,completed:new Set()};const SKILL_IDS=['llm','ros','python','docker','data','fullstack'];const SKILL_NAMES={llm:'LLM Integration',ros:'Robot Controller',python:'Python Engineering',docker:'Docker Deployment',data:'Data Handling',fullstack:'Full-stack Development'};const arisen=new Set();
+const labels={dashboard:'DASHBOARD',assistant:'GREAT SAGE',status:'PLAYER STATUS',quests:'DAILY QUESTS',skills:'SKILL ARCHIVE',archive:'PLAYER ARCHIVE'};
+const RANKS=['E','D','C','B','A','S'];const rankOf=l=>RANKS[Math.min(Math.max(l,1),RANKS.length)-1];
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+
+/* ===== บันทึกความคืบหน้า (เก็บในเบราว์เซอร์ ภารกิจรีเซ็ตทุกวัน) ===== */
+const STORE_KEY='hunter-system-v1';
+const todayStr=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+function saveState(){try{localStorage.setItem(STORE_KEY,JSON.stringify({day:todayStr(),level:player.level,xp:player.xp,points:player.points,attrs:attributes.map(a=>a.value),completed:[...player.completed],arisen:[...arisen]}))}catch{}}
+function loadState(){try{const r=JSON.parse(localStorage.getItem(STORE_KEY)||'null');if(!r||typeof r!=='object')return;const n=(v,min)=>Number.isFinite(v)&&v>=min?Math.floor(v):null;
+const lv=n(r.level,1),xp=n(r.xp,0),pt=n(r.points,0);if(lv!==null)player.level=lv;if(xp!==null)player.xp=xp;if(pt!==null)player.points=pt;
+if(Array.isArray(r.attrs))attributes.forEach((a,i)=>{const v=n(r.attrs[i],1);if(v!==null)a.value=v});
+if(Array.isArray(r.arisen))r.arisen.forEach(id=>{if(SKILL_IDS.includes(id))arisen.add(id)});
+if(r.day===todayStr()&&Array.isArray(r.completed))r.completed.forEach(id=>{if(quests.some(q=>q.id===id))player.completed.add(id)})}catch{}}
+
+/* ===== หน้าต่างแจ้งเตือนแบบระบบ ===== */
+const toastQ=[];let toastBusy=false;
+function notify(title,lines,big){toastQ.push({title,lines,big});if(!toastBusy)nextToast()}
+function nextToast(){const t=toastQ.shift(),el=$('#toast');if(!t){toastBusy=false;return}toastBusy=true;el.replaceChildren();const h=document.createElement('div');h.className='toast-title';h.textContent=t.title;el.append(h);t.lines.forEach(l=>{const d=document.createElement('div');d.className='toast-line';d.textContent=l;el.append(d)});el.classList.toggle('big',!!t.big);el.classList.add('show');setTimeout(()=>{el.classList.remove('show');setTimeout(nextToast,280)},t.big?3400:2500)}
+
+function render(){const need=player.level*100;
+$$('[data-level]').forEach(e=>e.textContent=String(player.level).padStart(2,'0'));
+$$('[data-rank]').forEach(e=>e.textContent=rankOf(player.level));
+$$('[data-xp]').forEach(e=>e.textContent=player.xp);$$('[data-needed]').forEach(e=>e.textContent=need);$$('[data-points]').forEach(e=>e.textContent=player.points);
+$$('[data-completed]').forEach(e=>e.textContent=player.completed.size);$$('[data-total]').forEach(e=>e.textContent=quests.length);
+$$('[data-message]').forEach(e=>e.textContent=player.points?`เลเวลอัปแล้ว! มีแต้มสถานะ ${player.points} แต้ม รอจัดสรร`:'สำรวจพอร์ตเพื่อทำภารกิจ รับ EXP และพัฒนาค่าสถานะ');
+$$('[data-fill]').forEach(e=>e.style.width=`${player.xp/need*100}%`);
+$$('[role=progressbar]').forEach(e=>e.setAttribute('aria-valuenow',String(Math.round(player.xp/need*100))));
+$$('[data-quest-list]').forEach(list=>list.innerHTML=quests.map(q=>{const d=player.completed.has(q.id);return `<div class="quest"><span class="quest-check ${d?'done':''}" role="img" aria-label="${d?'ภารกิจสำเร็จ':'ยังไม่สำเร็จ'}">${d?'✓':'○'}</span><span class="quest-name">${q.name}</span><span class="quest-reward">${d?'สำเร็จ':'+'+q.xp+' EXP'}</span></div>`}).join(''));
+$$('[data-attribute-summary]').forEach(box=>box.innerHTML=attributes.map(a=>`<div class="status-line"><span>${a.name} <span class="panel-tag">${a.key}</span></span><b class="cyan">${a.value}</b></div>`).join(''));
+$$('[data-attributes]').forEach(box=>box.innerHTML=attributes.map((a,i)=>`<article class="attribute"><div class="attribute-top"><span>${a.name}</span><span>${a.key}</span></div><div class="attribute-value">${a.value}</div><div class="attribute-bottom"><span>BASE VALUE</span><button class="plus" data-add="${i}" aria-label="เพิ่ม${a.name}" ${player.points<1?'disabled':''}>+</button></div></article>`).join(''))}
+
+
+/* ===== Shadow Army: ทักษะเป็นเงาที่ปลุกขึ้นมาได้ ===== */
+function renderArmy(rising){$$('[data-skill]').forEach(card=>{const id=card.dataset.skill,on=arisen.has(id);card.classList.toggle('arisen',on);const st=$('[data-shadow-state]',card);if(st)st.textContent=on?'ARISEN':'SHADOW';if(on&&rising===id){card.classList.add('rising');setTimeout(()=>card.classList.remove('rising'),1000)}});
+$$('[data-army-count]').forEach(e=>e.textContent=arisen.size);$$('[data-army-total]').forEach(e=>e.textContent=SKILL_IDS.length);
+$$('[data-arise-all]').forEach(b=>b.disabled=arisen.size===SKILL_IDS.length)}
+function arise(id){if(!SKILL_IDS.includes(id)||arisen.has(id))return;arisen.add(id);saveState();renderArmy(id);
+if(arisen.size===SKILL_IDS.length)notify('ARISE',['SHADOW ARMY ครบทั้ง '+SKILL_IDS.length+' ตน','ทักษะทั้งหมดถูกปลุกแล้ว'],true);
+else notify('[แจ้งเตือน]',['ARISE: '+SKILL_NAMES[id],'SHADOW ARMY '+arisen.size+' / '+SKILL_IDS.length])}
+function ariseAll(){const rest=SKILL_IDS.filter(id=>!arisen.has(id));if(!rest.length)return;rest.forEach(id=>arisen.add(id));saveState();renderArmy(null);$$('[data-skill]').forEach(c=>{c.classList.add('rising');setTimeout(()=>c.classList.remove('rising'),1000)});notify('ARISE',['SHADOW ARMY ครบทั้ง '+SKILL_IDS.length+' ตน','ทักษะทั้งหมดถูกปลุกแล้ว'],true)}
+
+/* ===== ภารกิจสำเร็จเองเมื่อผู้เล่นทำตามเงื่อนไข ===== */
+function award(id){const q=quests.find(x=>x.id===id);if(!q||player.completed.has(id))return;
+const oldRank=rankOf(player.level);player.completed.add(id);player.xp+=q.xp;
+notify('[แจ้งเตือน]',['ภารกิจสำเร็จ: '+q.name,'+'+q.xp+' EXP']);
+let up=false;while(player.xp>=player.level*100){player.xp-=player.level*100;player.level++;player.points+=3;up=true}
+if(up){const nr=rankOf(player.level);notify('LEVEL UP',['คุณขึ้นสู่เลเวล '+player.level,'ได้รับแต้มสถานะ +3'+(nr!==oldRank?'  ·  RANK '+oldRank+' → '+nr:'')],true)}
+saveState();render()}
+
+document.addEventListener('click',e=>{
+const add=e.target.closest('[data-add]');
+if(add&&player.points){attributes[Number(add.dataset.add)].value++;player.points--;saveState();render();notify('[แจ้งเตือน]',['อัปเดตค่าสถานะแล้ว'])}
+const page=e.target.closest('[data-page]');
+if(page){const key=page.dataset.page;$$('.page').forEach(p=>p.classList.toggle('active',p.id===`page-${key}`));$$('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===key));$('#crumb-name').textContent=labels[key];window.scrollTo({top:0,behavior:'smooth'});if(key==='skills')award('skills');if(key==='archive')award('archive')}
+if(e.target.closest('[data-go]')){const key=e.target.closest('[data-go]').dataset.go;document.querySelector(`[data-page="${key}"]`).click()}
+const ar=e.target.closest('[data-arise]');if(ar)arise(ar.dataset.arise);
+if(e.target.closest('[data-arise-all]'))ariseAll();
+if(e.target.closest('[data-invite],[data-email]')){$('#invite-modal').classList.add('open');award('contact')}
+if(e.target.closest('[data-close]')||e.target.id==='invite-modal')$('#invite-modal').classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#invite-modal').classList.remove('open')});
+
+loadState();render();renderArmy(null);
+function updateClock(){const d=new Date();const c=$('#clock');if(c)c.textContent=d.toLocaleTimeString('th-TH',{hour12:false})}updateClock();setInterval(updateClock,1000);const yr=$('#year');if(yr)yr.textContent=new Date().getFullYear();
+if(!player.completed.size)notify('[แจ้งเตือน]',['ภารกิจประจำวันมาถึงแล้ว','สำรวจพอร์ตเพื่อรับ EXP']);
+const SAGE_CHAT={welcome:'ยินดีที่ได้พบ ผู้เล่น ฉันคือมหาปราชญ์ ผู้ดูแลคลังความรู้ของพีรพัฒน์ กดเลือกหัวข้อด้านล่างเพื่อสอบถามข้อมูลได้เลย',qa:[
+{q:'ความเชี่ยวชาญหลักคือด้านไหน?',a:'ความเชี่ยวชาญหลักมี 2 ด้าน คือ 1. การพัฒนาระบบ Chat AI และเชื่อมต่อ LLM API กับฐานข้อมูล 2. การเขียนโปรแกรมควบคุมระบบหุ่นยนต์ด้วย ROS2 Humble'},
+{q:'ทักษะที่ปลดล็อกแล้วมีอะไรบ้าง?',a:'ทักษะในคลังมี 6 อย่าง\n• LLM Integration – เชื่อมต่อโมเดลภาษาเข้ากับระบบและฐานข้อมูล\n• Robot Controller – ควบคุมและสื่อสารระหว่าง Node บน ROS2 Humble\n• Python Engineering – พัฒนาเครื่องมือและระบบประมวลผลข้อมูล\n• Docker Deployment – จัดการสภาพแวดล้อมและ deploy แอปพลิเคชัน\n• Data Handling – ทำงานกับ PostgreSQL และ Pandas\n• Full-stack Development – สร้างเว็บแอปด้วย React, Express และ REST API'},
+{q:'มีโปรเจกต์อะไรบ้าง?',a:'บันทึกภารกิจมี 2 โปรเจกต์\n1. Mini Chat AI – Python, TouchDesigner, React, Supabase, Blender, Node.js\n2. Autonomous Navigation – ระบบนำทางหุ่นยนต์เคลื่อนที่อัตโนมัติ จำลองสภาพแวดล้อมและจัดการเซนเซอร์ด้วย Python บน ROS2 Humble'},
+{q:'ประวัติการศึกษาเป็นอย่างไร?',a:'กำลังศึกษาปริญญาตรี สาขาวิชาวิศวกรรมปัญญาประดิษฐ์และวิทยาการข้อมูล ที่มหาวิทยาลัยกรุงเทพ (Bangkok University) มุ่งเน้น AI, Data Science และความรู้ด้านธุรกิจ'},
+{q:'แนวทางแก้ปัญหาเวลาเขียนโค้ดติดขัด?',a:'เป็นคนละเอียดรอบคอบ เมื่อพบบั๊กจะตรวจสอบและรันโค้ดทีละบรรทัดอย่างเป็นระบบ เพื่อให้เข้าใจต้นตอของปัญหาจริงๆ'},
+{q:'เครื่องมือหลักที่ใช้พัฒนาโปรเจกต์?',a:'ใช้ VS Code เป็นหลัก ร่วมกับ Docker สำหรับจัดการ Environment และใช้ AI Assistant ช่วยวิเคราะห์และตรวจสอบโครงสร้างโค้ดให้มีประสิทธิภาพ'},
+{q:'งานอดิเรกเวลาว่างคืออะไร?',a:'ชอบอ่านหนังสือการ์ตูน และเล่นเกมแนววางแผน (Strategy) รวมถึงเกมจำลองสถานการณ์ (Simulation) เพื่อฝึกทักษะการคิดวิเคราะห์'}
+]};
+let sageHistory=[];let sageTyping=false;const sageLog=$('#assistant-messages'),sageAsks=$('#assistant-asks');
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function graphemes(t){try{return[...new Intl.Segmenter('th',{granularity:'grapheme'}).segment(t)].map(x=>x.segment)}catch{return Array.from(t)}}
+function typeInto(p,text,done){const g=graphemes(text);let i=0,finished=false;const art=p.parentElement;
+function finish(){if(finished)return;finished=true;clearInterval(timer);art.removeEventListener('click',finish);p.textContent=text;done()}
+const timer=setInterval(()=>{i+=2;p.textContent=g.slice(0,i).join('');sageLog.scrollTop=sageLog.scrollHeight;if(i>=g.length)finish()},20);art.addEventListener('click',finish)}
+function sageMsg(role,text){const a=document.createElement('article');a.className='assistant-message'+(role==='user'?' user':'');const s=document.createElement('small');s.textContent=role==='user'?'YOU · PLAYER':'มหาปราชญ์ · SYSTEM';const p=document.createElement('p');p.textContent=text;a.append(s,p);return a}
+function renderSage(typeLast){sageLog.replaceChildren();const w=document.createElement('div');w.className='assistant-welcome';const st=document.createElement('strong');st.textContent='มหาปราชญ์';const wp=document.createElement('p');wp.textContent=SAGE_CHAT.welcome;w.append(st,wp);sageLog.append(w);
+const typing=!!typeLast&&!reduceMotion&&sageHistory.length>0;sageTyping=typing;let pending=null;
+sageHistory.forEach((it,n)=>{const last=typing&&n===sageHistory.length-1;const ans=sageMsg('assistant',last?'':it.a);sageLog.append(sageMsg('user',it.q),ans);if(last)pending={p:ans.querySelector('p'),text:it.a}});
+sageLog.scrollTop=sageLog.scrollHeight;sageAsks.replaceChildren();const asked=sageHistory.map(i=>i.idx);
+SAGE_CHAT.qa.forEach((item,i)=>{const b=document.createElement('button');b.type='button';b.dataset.i=i;b.textContent=item.q;b.disabled=sageTyping||asked.includes(i);sageAsks.append(b)});
+if(sageHistory.length){const c=document.createElement('button');c.type='button';c.dataset.act='clear';c.className='clear';c.textContent='ล้างประวัติแชท';c.disabled=sageTyping;sageAsks.append(c)}
+if(pending)typeInto(pending.p,pending.text,()=>{sageTyping=false;renderSage(false)})}
+sageAsks.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled||sageTyping)return;let typeLast=false;if(b.dataset.i!==undefined){const idx=+b.dataset.i;sageHistory.push({idx,q:SAGE_CHAT.qa[idx].q,a:SAGE_CHAT.qa[idx].a});typeLast=true;award('sage')}else if(b.dataset.act==='clear'){sageHistory=[]}renderSage(typeLast)});
+renderSage(false);
+</script>
+</body>
+</html>
