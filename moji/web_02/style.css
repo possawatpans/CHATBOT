@@ -1,0 +1,1040 @@
+/* ตั้งค่าพื้นฐานและพื้นหลัง */
+body {
+    background-color: #1a1c2c; /* สีกรมท่าเข้มแบบเกมยุคเก่า */
+    color: #f4f4f4;
+    font-family: 'Press Start 2P', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* กรอบหน้าจอเกม */
+.game-screen {
+    width: 90%;
+    max-width: 650px;
+}
+
+/* แถบพลังชีวิตด้านบน */
+.hud {
+    background-color: #29366f;
+    border: 4px solid #ffffff;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    box-shadow: 6px 6px 0px #000000; /* เงาแข็งแบบพิกเซล */
+}
+
+/* กล่องข้อความ RPG */
+.dialog-box {
+    background-color: #333c57;
+    border: 4px solid #ffffff;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 8px 8px 0px #000000;
+}
+
+h1 {
+    color: #ffcd75; /* สีเหลืองทอง */
+    font-size: 24px;
+    text-shadow: 4px 4px 0px #b13e53; /* เงาตัวหนังสือ */
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #38b764; /* สีเขียวสด */
+    font-size: 12px;
+    margin-bottom: 25px;
+}
+
+/* กรอบรูปภาพตัวละคร */
+.avatar-frame {
+    display: inline-block;
+    border: 4px solid #ffcd75;
+    padding: 4px;
+    background-color: #1a1c2c;
+    box-shadow: 4px 4px 0px #000000;
+    margin-bottom: 20px;
+}
+
+.avatar-frame img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+    image-rendering: pixelated; /* ทำให้ภาพดูคมชัดแบบพิกเซล */
+}
+
+.story-text {
+    font-family: sans-serif; /* ใช้ฟอนต์อ่านง่ายสำหรับภาษาไทย */
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: #1a1c2c;
+    border: 2px solid #566c86;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+/* ปุ่มกดสไตล์ 8-Bit */
+.menu-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.pixel-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    padding: 15px 20px;
+    border: 4px solid #ffffff;
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #000000;
+    transition: transform 0.1s;
+}
+
+.btn-start {
+    background-color: #e43b44; /* สีแดง */
+}
+
+.btn-about {
+    background-color: #3b5dc9; /* สีน้ำเงิน */
+}
+
+/* เอฟเฟกต์ตอนเอาเมาส์ชี้และกดปุ่ม */
+.pixel-btn:hover {
+    filter: brightness(1.15);
+}
+
+.pixel-btn:active {
+    transform: translate(4px, 4px); /* ยุบตัวลงเหมือนกดปุ่มจริง */
+    box-shadow: 0px 0px 0px #000000;
+}
+
+/* =============================== */
+/* เปลี่ยนเคอร์เซอร์ทั้งหน้าเว็บ และกำหนดจุดคลิก (ตัวเลข 2 2 คือพิกัด X และ Y จากมุมซ้ายบนของรูป) */
+body {
+    cursor: url('images/sword.png') 2 2, auto;
+}
+
+/* ทำให้เวลาเอาเมาส์ไปชี้ที่ปุ่ม (Button) ยังคงเป็นรูปดาบอยู่ */
+/* เปลี่ยนเคอร์เซอร์เมื่อเอาเมาส์ไปชี้ที่ปุ่ม */
+.pixel-btn:hover {
+    cursor: url('images/boom.png') 2 2, pointer;
+}
+
+/* =========================== */
+/* พื้นหลังมืดที่จะคลุมหน้าจอตอนป๊อปอัปแสดงขึ้นมา */
+.popup-overlay {
+    display: none; /* ซ่อนไว้ก่อนโดยค่าเริ่มต้น */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 28, 44, 0.85); /* สีมืดแบบโปร่งแสง */
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* ให้แสดงทับทุกอย่างบนหน้าจอ */
+}
+
+/* กล่องป๊อปอัปสไตล์เกม RPG */
+.popup-box {
+    background-color: #333c57;
+    border: 4px solid #ffffff;
+    padding: 30px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 8px 8px 0px #000000;
+}
+
+.popup-box h2 {
+    color: #ffcd75;
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 0px #b13e53;
+}
+
+.popup-box p {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #f4f4f4;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+/* ======================================= */
+/* ========================================= */
+/* จัดระเบียบกลุ่มปุ่มเมนูให้เรียงสวยและสมดุล */
+.menu-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* สีปุ่ม การศึกษา (สีเขียว Emerald สไตล์ RPG) */
+.btn-edu {
+    background-color: #2e8b57;
+    color: #ffffff;
+}
+.btn-edu:hover {
+    background-color: #3cb371;
+}
+
+/* สีปุ่ม ทักษะ (สีส้มทอง Gold/Amber) */
+.btn-skills {
+    background-color: #d97706;
+    color: #ffffff;
+}
+.btn-skills:hover {
+    background-color: #f59e0b;
+}
+
+/* สีปุ่ม ผลงาน (สีม่วง Mystic Purple) */
+.btn-projects {
+    background-color: #7c3aed;
+    color: #ffffff;
+}
+.btn-projects:hover {
+    background-color: #8b5cf6;
+}
+
+/* สีปุ่ม แชทกับเลขา (สีเขียวน้ำทะเล Teal/Cyan) */
+.btn-chat {
+    background-color: #0d9488;
+    color: #ffffff;
+}
+.btn-chat:hover {
+    background-color: #14b8a6;
+}
+
+/* ====================================== */
+/* จัดหน้าต่างกล่องแชท */
+.chat-box-container {
+    max-width: 520px;
+    text-align: left !important;
+}
+
+/* หน้าจอแสดงข้อความแชท */
+.chat-messages {
+    background: #111;
+    color: #0f0;
+    padding: 12px;
+    border-radius: 6px;
+    height: 160px;
+    overflow-y: auto;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    margin-bottom: 12px;
+    border: 2px solid #333;
+}
+
+/* ข้อความแต่ละบรรทัดในแชท */
+.chat-msg {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+/* ข้อความฝั่งผู้เล่น (คำถามที่กดเลือก) */
+.user-msg {
+    color: #ff0;
+    text-align: right;
+}
+
+/* ข้อความฝั่งเลขาฯ (คำตอบ) */
+.bot-msg {
+    color: #0f0;
+}
+
+/* กลุ่มปุ่มเลือกคำถาม */
+.chat-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+/* ดีไซน์ปุ่มคำถามแต่ละข้อ */
+.chat-option-btn {
+    background-color: #222;
+    color: #fff;
+    border: 2px solid #555;
+    padding: 8px 10px;
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+/* เอฟเฟกต์เวลามีเมาส์ชี้ปุ่มคำถาม */
+.chat-option-btn:hover {
+    background-color: #0d9488;
+    border-color: #14b8a6;
+    color: #fff;
+    transform: translateX(4px);
+}
+
+/* =========================================== */
+/* ==========================================
+   ตกแต่งปุ่มสลับธีมบนแถบ HUD
+   ========================================== */
+.theme-toggle-btn {
+    background-color: #f59e0b;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 4px 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px #000;
+    transition: transform 0.1s;
+}
+
+.theme-toggle-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+
+/* ==========================================
+   โหมดกลางวัน (Sunny Town Theme)
+   ========================================== */
+body.day-mode {
+    background-color: #60a5fa; /* ท้องฟ้าสีฟ้าสดใสสไตล์เกม 8-Bit */
+    color: #1e293b;
+}
+
+body.day-mode .hud {
+    background-color: #fef3c7; /* แถบสถานะสีครีมสว่าง */
+    color: #78350f;
+    border-color: #b45309;
+}
+
+body.day-mode .dialog-box {
+    background-color: #fffbeb; /* กล่องข้อความหลักสีขาวนวลอบอุ่น */
+    color: #1e293b;
+    border-color: #d97706;
+    box-shadow: 8px 8px 0px rgba(180, 83, 9, 0.3);
+}
+
+body.day-mode .dialog-box h1 {
+    color: #d97706; /* ชื่อ KULPRIYA สีส้มทองเด่นชัด */
+    text-shadow: 3px 3px 0px #fde68a;
+}
+
+body.day-mode .subtitle {
+    color: #059669; /* คำบรรยายสีเขียวมรกต */
+}
+
+body.day-mode .story-text {
+    background-color: #fef3c7; /* กล่องเนื้อเรื่องสีครีมอ่อน */
+    color: #334155;
+    border-color: #f59e0b;
+}
+
+body.day-mode .popup-box {
+    background-color: #fffbeb; /* กล่องป๊อปอัปโหมดกลางวัน */
+    color: #1e293b;
+    border-color: #d97706;
+}
+
+/* ==========================================
+   แก้ไขสีข้อความในกล่องป๊อปอัปสำหรับโหมดกลางวัน (ให้อ่านง่ายคมชัด)
+   ========================================== */
+body.day-mode .popup-box {
+    background-color: #fffbeb; /* พื้นหลังกล่องสีครีมอ่อน */
+    color: #1e293b;            /* สีข้อความหลักสีน้ำเงินเข้มเกือบดำ */
+    border-color: #d97706;     /* ขอบสีส้มทอง */
+}
+
+/* เปลี่ยนสีหัวข้อ (h2) และเนื้อหา (p, strong) ข้างในป๊อปอัปทั้งหมดให้เป็นสีเข้ม */
+body.day-mode .popup-box h2 {
+    color: #b45309;            /* หัวข้อสีน้ำตาลทองเข้ม */
+    text-shadow: none;         /* เอาเงาสีดำของโหมดกลางคืนออก */
+}
+
+body.day-mode .popup-box p,
+body.day-mode .popup-box strong {
+    color: #1e293b !important; /* บังคับให้เนื้อหาข้างในเป็นสีเข้มทั้งหมด */
+}
+
+/* ปรับสีชื่อไอเทมรางวัลในป๊อปอัป START GAME (จากสีเหลืองสว่างเป็นสีส้มเข้ม) */
+body.day-mode #game-result strong {
+    color: #d97706 !important; 
+}
+
+/*================================== */
+/* ==========================================
+   เอฟเฟกต์เคอร์เซอร์กระพริบท้ายข้อความพิมพ์ดีด
+   ========================================== */
+.cursor-blink {
+    display: inline-block;
+    margin-left: 4px;
+    animation: blinkCursor 0.7s infinite;
+    color: #4ade80; /* สีเขียวสไตล์หน้าจอเกมเรโทร */
+}
+
+/* สีเคอร์เซอร์เวลาสลับเป็นโหมดกลางวัน (Sunny Town) */
+body.day-mode .cursor-blink {
+    color: #d97706;
+}
+
+@keyframes blinkCursor {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+/* ================================== */
+/* ==========================================
+   ตกแต่งปุ่มช่องทางติดต่อในหน้า ABOUT ME
+   ========================================== */
+.about-box-wide {
+    max-width: 500px;
+}
+
+.pixel-divider {
+    border: 0;
+    border-top: 2px dashed #555;
+    margin: 12px 0;
+}
+
+.contact-row-main,
+.contact-row-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+/* ดีไซน์พื้นฐานของปุ่มติดต่อ */
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-family: 'VT323', monospace;
+    font-size: 19px;
+    text-decoration: none;
+    border: 2px solid #fff;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px #000;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.contact-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+
+/* ปุ่ม GitHub สีดำเข้ม */
+.btn-github {
+    background-color: #18181b;
+    color: #ffffff;
+}
+.btn-github:hover {
+    background-color: #27272a;
+}
+
+/* ปุ่มส่งอีเมลติดต่อ สีขาวสะอาดตา */
+.btn-email-trigger {
+    background-color: #f8fafc;
+    color: #0f172a;
+    border-color: #94a3b8;
+}
+.btn-email-trigger:hover {
+    background-color: #e2e8f0;
+}
+
+/* ปุ่มโซเชียลแถวล่าง (Facebook, IG, LINE) */
+.btn-social {
+    background-color: #334155;
+    color: #f8fafc;
+    border-color: #64748b;
+    font-size: 17px;
+    padding: 6px 12px;
+}
+.btn-social:hover {
+    background-color: #475569;
+    border-color: #fff;
+}
+
+/* ==========================================
+   ตกแต่งหน้าต่างป๊อปอัปย่อย "ติดต่อทางอีเมล"
+   ========================================== */
+.email-modal-box {
+    max-width: 440px;
+    text-align: left !important;
+}
+
+.email-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.email-modal-header h2 {
+    margin: 0;
+}
+
+.close-x-btn {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.email-desc {
+    font-size: 18px !important;
+    margin-bottom: 14px;
+    line-height: 1.4;
+}
+
+/* กล่องกรอบอีเมล + ปุ่มคัดลอก */
+.email-copy-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1e293b;
+    border: 2px solid #475569;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    color: #38bdf8;
+}
+
+.copy-btn {
+    background-color: #0f172a;
+    color: #ffffff;
+    border: 2px solid #fff;
+    padding: 4px 10px;
+    font-family: 'VT323', monospace;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background-color: #0d9488;
+}
+
+/* ปุ่มเปิด Gmail และแอปอีเมล */
+.email-action-btn {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #1e293b;
+    color: #f8fafc;
+    border: 2px solid #64748b;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-family: 'VT323', monospace;
+    font-size: 19px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.email-action-btn:hover {
+    background-color: #334155;
+    border-color: #fff;
+}
+
+/* ==========================================
+   ปรับสีปุ่มติดต่อสำหรับโหมดกลางวัน (Sunny Town)
+   ========================================== */
+body.day-mode .btn-social {
+    background-color: #ffffff;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+body.day-mode .btn-social:hover {
+    background-color: #fef3c7;
+    border-color: #d97706;
+}
+
+body.day-mode .email-copy-box {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
+body.day-mode .copy-btn {
+    background-color: #18181b;
+    color: #ffffff;
+    border-color: #18181b;
+}
+
+body.day-mode .email-action-btn {
+    background-color: #ffffff;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+body.day-mode .email-action-btn:hover {
+    background-color: #fef3c7;
+    border-color: #d97706;
+}
+
+/* ==========================================
+   ตกแต่งปุ่ม LINE และหน้าต่างสแกน QR Code
+   ========================================== */
+.btn-line-trigger {
+    background-color: #06c755; /* สีเขียวเอกลักษณ์ของ LINE */
+    color: #ffffff;
+    border-color: #ffffff;
+}
+.btn-line-trigger:hover {
+    background-color: #05b34c;
+}
+
+.line-modal-box {
+    max-width: 380px;
+}
+
+.qr-image-container {
+    background-color: #ffffff;
+    padding: 12px;
+    border: 4px solid #06c755;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto 14px auto;
+    width: fit-content;
+    box-shadow: 4px 4px 0px #000;
+}
+
+.line-qr-img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+}
+
+/* ==========================================
+   หน้าต่างโหมดเกมแผนที่ & ตัวอัศวิน (Knight NPC)
+   ========================================== */
+.game-map-modal-box {
+    width: 92%;
+    max-width: 720px;
+}
+
+.rpg-map-stage {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    margin: 12px 0;
+    background-color: #4ade80;
+    background-image:
+        radial-gradient(#22c55e 2px, transparent 2px),
+        radial-gradient(#86efac 2px, #4ade80 2px);
+    background-size: 24px 24px;
+    background-position: 0 0, 12px 12px;
+    border: 4px solid #1e293b;
+    box-shadow: inset 0 0 0 4px #15803d, 4px 4px 0px #000;
+    overflow: hidden;
+    cursor: crosshair;
+    user-select: none;
+}
+
+.map-hint {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(15, 23, 42, 0.85);
+    color: #fde047;
+    font-size: 9px;
+    padding: 4px 8px;
+    border: 2px solid #fff;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* อาคารกิลด์มุมขวาบน */
+.guild-building {
+    position: absolute;
+    top: 34px;
+    right: 32px;
+    width: 112px;
+    background-color: #fef3c7;
+    border: 4px solid #78350f;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    z-index: 2;
+}
+
+.guild-roof {
+    background-color: #dc2626;
+    color: #fff;
+    font-size: 8px;
+    padding: 6px 2px;
+    border-bottom: 4px solid #7f1d1d;
+    text-shadow: 1px 1px 0 #000;
+}
+
+.guild-door {
+    font-size: 22px;
+    padding: 4px 0;
+    background-color: #92400e;
+    width: 34px;
+    margin: 4px auto 0 auto;
+    border-top: 3px solid #451a03;
+    border-left: 3px solid #451a03;
+    border-right: 3px solid #451a03;
+}
+
+/* ตัวอัศวินในแผนที่ */
+.knight-npc {
+    position: absolute;
+    bottom: 36px;
+    right: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 3;
+    pointer-events: none;
+}
+
+@keyframes knightIdle {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+}
+
+.knight-sprite {
+    font-size: 30px;
+    line-height: 1;
+    filter: drop-shadow(2px 3px 0px rgba(0, 0, 0, 0.5));
+    animation: knightIdle 1.2s ease-in-out infinite;
+}
+
+.npc-tag {
+    background: #1d4ed8;
+    color: #fff;
+    font-size: 7px;
+    padding: 2px 5px;
+    margin-top: 2px;
+    border: 1px solid #fff;
+    box-shadow: 1px 2px 0 #000;
+}
+
+/* ตัวละครผู้เล่น */
+.player-sprite {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.player-img {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border: 3px solid #fff;
+    border-radius: 6px;
+    box-shadow: 2px 3px 0px #000;
+    image-rendering: pixelated;
+}
+
+.player-tag {
+    background: #000;
+    color: #fff;
+    font-size: 7px;
+    padding: 1px 4px;
+    margin-top: -4px;
+    border: 1px solid #fff;
+}
+
+@keyframes pixelWalkBob {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+.is-walking .player-img {
+    animation: pixelWalkBob 0.25s infinite;
+}
+
+.game-map-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+/* ======================================= */
+/* ==========================================
+   จุดหมายทั้ง 5 แห่งบนแผนที่เกม (Spots & NPCs)
+   ========================================== */
+.rpg-map-stage {
+    height: 300px;
+}
+
+.map-spot {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.spot-icon {
+    font-size: 28px;
+    line-height: 1;
+    filter: drop-shadow(2px 3px 0px rgba(0, 0, 0, 0.5));
+    animation: knightIdle 1.4s ease-in-out infinite;
+}
+
+.spot-edu {
+    top: 46px;
+    left: 36px;
+}
+
+.spot-skills {
+    top: 46px;
+    left: 46%;
+}
+
+.spot-projects {
+    bottom: 28px;
+    left: 44px;
+}
+
+.knight-npc {
+    bottom: 28px;
+    right: 48px;
+}
+
+.tag-edu {
+    background: #15803d;
+}
+
+.tag-skills {
+    background: #d97706;
+}
+
+.tag-projects {
+    background: #7e22ce;
+}
+
+/* ==========================================
+   ปรับสีหน้าต่างแผนที่เกมให้เข้ากับโหมดกลางวัน (Sunny Town)
+   ========================================== */
+body.day-mode .game-map-modal-box {
+    background-color: #fffbeb;
+    color: #1e293b;
+    border-color: #d97706;
+}
+
+body.day-mode .game-map-modal-box h2 {
+    color: #b45309;
+    text-shadow: none;
+}
+
+body.day-mode .close-x-btn {
+    color: #dc2626;
+}
+
+/* ==========================================
+   มอนสเตอร์วิ่งไล่ & หน้าต่าง GAME OVER
+   ========================================== */
+.chase-monster {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9;
+    pointer-events: none;
+}
+
+.monster-sprite {
+    font-size: 30px;
+    line-height: 1;
+    filter: drop-shadow(2px 3px 0px rgba(0, 0, 0, 0.55));
+    animation: pixelWalkBob 0.3s infinite;
+}
+
+.monster-tag {
+    background: #dc2626;
+    color: #fff;
+    font-size: 7px;
+    padding: 1px 5px;
+    margin-top: 2px;
+    border: 1px solid #fff;
+    box-shadow: 1px 2px 0 #000;
+}
+
+.gameover-modal-box {
+    max-width: 420px;
+}
+
+.gameover-subtext {
+    margin-bottom: 14px !important;
+}
+
+.gameover-img-frame {
+    display: inline-block;
+    border: 4px solid #ef4444;
+    padding: 4px;
+    background-color: #18181b;
+    box-shadow: 4px 4px 0px #000;
+    margin-bottom: 18px;
+}
+
+.gameover-img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+    image-rendering: pixelated;
+}
+
+.gameover-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+body.day-mode .gameover-modal-box {
+    background-color: #fffbeb;
+    color: #1e293b;
+    border-color: #dc2626;
+}
+
+body.day-mode .gameover-modal-box h2 {
+    color: #dc2626;
+    text-shadow: none;
+}
+
+/* ==========================================
+   กล่องรางวัลเมื่อเดินครบ 5 จุดโดยไม่โดนจับ (QUEST CLEAR)
+   ========================================== */
+.victory-modal-box {
+    max-width: 430px;
+}
+
+.victory-subtext {
+    margin-bottom: 14px !important;
+}
+
+.victory-badge-box {
+    background-color: #1e293b;
+    border: 3px solid #ffcd75;
+    padding: 14px;
+    margin-bottom: 18px;
+    box-shadow: 4px 4px 0px #000;
+}
+
+.victory-icon {
+    font-size: 36px;
+    line-height: 1.2;
+}
+
+.victory-item-name {
+    color: #ffcd75;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.victory-gold-bonus {
+    color: #4ade80;
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    margin-top: 4px;
+}
+
+body.day-mode .victory-modal-box {
+    background-color: #fffbeb;
+    color: #1e293b;
+    border-color: #d97706;
+}
+
+body.day-mode .victory-modal-box h2 {
+    color: #b45309;
+    text-shadow: none;
+}
+
+body.day-mode .victory-badge-box {
+    background-color: #fef3c7;
+    border-color: #d97706;
+    box-shadow: 4px 4px 0px rgba(180, 83, 9, 0.25);
+}
+
+body.day-mode .victory-item-name {
+    color: #b45309;
+}
+
+body.day-mode .victory-gold-bonus {
+    color: #15803d;
+}
+
+/* ==========================================
+   กรอบรูปภาพประกอบหน้าชนะภารกิจ (QUEST CLEAR)
+   ========================================== */
+.victory-img-frame {
+    display: inline-block;
+    border: 4px solid #ffcd75;
+    padding: 4px;
+    background-color: #18181b;
+    box-shadow: 4px 4px 0px #000;
+    margin-bottom: 14px;
+}
+
+.victory-img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+    image-rendering: pixelated;
+}
+
+body.day-mode .victory-img-frame {
+    border-color: #d97706;
+    background-color: #fef3c7;
+    box-shadow: 4px 4px 0px rgba(180, 83, 9, 0.25);
+}
+
+/* ==========================================
+   ป้ายบอกจำนวนจุดที่สำรวจแล้วบนแผนที่
+   ========================================== */
+.map-progress-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(15, 23, 42, 0.9);
+    color: #4ade80;
+    font-size: 9px;
+    padding: 4px 8px;
+    border: 2px solid #fff;
+    z-index: 5;
+    pointer-events: none;
+    box-shadow: 2px 2px 0px #000;
+}
+
+.map-progress-badge.is-complete {
+    color: #ffcd75;
+    border-color: #ffcd75;
+}
+
+/* ปรับสีปุ่ม GitHub ในโหมดกลางวัน (body.day-mode)  */
+body.day-mode #projects-popup .btn-github {
+    background-color: #1c902d;
+    color: #ffffff;
+    border-color: #d97706;
+}
