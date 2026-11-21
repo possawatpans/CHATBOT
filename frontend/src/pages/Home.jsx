@@ -57,7 +57,7 @@ export default function Home() {
 
           <h1 className="hero-title">
             <span className="line">
-              <span style={{ '--i': 0 }}>CTRL+Z</span>
+              <span style={{ '--i': 0 }}>CTRL+ff</span>
             </span>
             <span className="line">
               <span style={{ '--i': 1 }}>Team Portfolio</span>
