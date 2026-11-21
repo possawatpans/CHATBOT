@@ -26,7 +26,7 @@ const teamMembers = [
   },
   {
     name: 'พศวัต (Possawat)',
-    role: 'Data Scientist & Business Analyst',
+    role: 'Full stack',
     skills: ['SQL', 'Data Visualization', 'Business Strategy'],
     portfolioUrl: 'https://oak-portfolio-ae1365.gitlab.io/',
     accentColor: '#8b5cf6',
